@@ -18,10 +18,26 @@
                         @csrf
                         <div class="row px-3"> <label class="mb-1">
                                 <h6 class="mb-0 text-sm">Email Address</h6>
-                            </label> <input class="mb-4" type="text" name="email" placeholder="Enter a valid email address"> </div>
+                            </label> 
+                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                        </div>
                         <div class="row px-3"> <label class="mb-1">
                                 <h6 class="mb-0 text-sm">Password</h6>
-                            </label> <input type="password" name="password" placeholder="Enter password"> </div>
+                            </label>
+                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                        </div>
                         <div class="row px-3 mb-4">
                             <div class="custom-control custom-checkbox custom-control-inline">
                                 <input type="checkbox" name="remember" id="remember" class="custom-control-input">

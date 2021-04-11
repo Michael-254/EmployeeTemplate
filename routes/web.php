@@ -34,6 +34,7 @@ Route::post('/upload', [App\Http\Controllers\EmployeeTemplateController::class, 
 Route::delete('/remove/{id}', [App\Http\Controllers\EmployeeTemplateController::class, 'destroy'])->name('remove');
 //file
 Route::get('/View/{id}', [App\Http\Controllers\EmployeeTemplateController::class, 'file'])->name('report.file');
+Route::get('AdminView/View/{id}', [App\Http\Controllers\EmployeeTemplateController::class, 'file'])->name('report.file2');
 
 Route::get('/Admin', [App\Http\Controllers\EmployeeTemplateController::class, 'Admin'])->name('Admin');
 Route::get('/EmployeeView/{id}', [App\Http\Controllers\EmployeeTemplateController::class, 'Adminview'])->name('Admin.view');

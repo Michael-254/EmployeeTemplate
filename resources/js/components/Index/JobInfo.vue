@@ -19,7 +19,7 @@
                 </div>
                 <div class="mt-4 flex space-x-2">
                   <div class="flex-1">
-                    <label class="text-blue-500 font-semibold">Title</label>
+                    <label class="text-blue-500 font-semibold">Job Title</label>
                     <input
                       v-model="form.title"
                       type="text"
@@ -87,7 +87,7 @@
                 <div class="mt-2 flex space-x-2">
                   <div class="flex-1">
                     <label class="text-blue-500 font-semibold"
-                      >E-mail Address</label
+                      >Job E-mail Address</label
                     >
                     <input
                       v-model="form.Wemail"
@@ -139,6 +139,22 @@
                       class="w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600"
                     />
                   </div>
+                  <div class="flex-1">
+                    <label class="text-blue-500 font-semibold"
+                      >Currency</label
+                    >
+                    <select
+                      v-model="form.currency"
+                      type="text"
+                      class="w-full py-2 px-2 rounded-lg shadow-sm focus:outline-none focus:shadow-outline bg-gray-200 text-gray-600"
+                    >
+                      <option value="">-- Select Title --</option>
+                      <option value="USD">USD</option>
+                      <option value="Kshs">Kshs</option>
+                      <option value="UGX">UGX</option>
+                      <option value="Tshs">Tshs</option>
+                    </select>
+                  </div>
                 </div>
 
                 <div class="flex float-right mt-2">
@@ -176,6 +192,7 @@ export default {
         Wphone: "",
         Sdate: "",
         salary: "",
+        currency: "",
       },
       errors: {},
     };

@@ -16,6 +16,7 @@ class CreateEmployeeTemplatesTable extends Migration
         Schema::create('employee_templates', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->unique()->constrained();
+            $table->string('salutation')->nullable();
             $table->string('Fname')->nullable();
             $table->string('street')->nullable();
             $table->string('apartment')->nullable();
@@ -29,6 +30,10 @@ class CreateEmployeeTemplatesTable extends Migration
             $table->string('Krapin')->nullable();
             $table->string('nssf')->nullable();
             $table->string('nhif')->nullable();
+            $table->string('Bankname')->nullable();
+            $table->string('AccNo')->nullable();
+            $table->string('Branchname')->nullable();
+            $table->string('Branchcode')->nullable();
             $table->string('dob')->nullable();
             $table->string('status')->nullable();
             $table->string('spouseN')->nullable();

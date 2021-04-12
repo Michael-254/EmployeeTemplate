@@ -48,7 +48,7 @@ class User extends Authenticatable
     }
 
     public function jobInfos(){
-        return $this->hasOne(jobInfo::class);
+        return $this->hasOne(JobInfo::class);
     }
 
     public function emergency(){

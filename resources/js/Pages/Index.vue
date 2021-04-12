@@ -1,6 +1,9 @@
 <template>
   <div class="min-h-screen font-mono" >
      <bridge-notify />
+     <div>
+       <h3 class="text-blue-500 text-center font-bold text-xl">Employee Information Sheet</h3>
+     </div>
     <div v-if="data.dataA != ''">
       <app-employeeedit :form="data.dataA" @reloadData='fetchData'/>
     </div>

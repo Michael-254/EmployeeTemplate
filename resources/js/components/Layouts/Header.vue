@@ -19,6 +19,7 @@
             <router-link to="/">Home</router-link>
           </span>
           <span
+            v-if="user.admin == true"
             class="font-bold text-white cursor-pointer hover:underline ml-3 mt-1"
           >
             <router-link to="/Employees">View Employees</router-link>
@@ -47,7 +48,7 @@ export default {
   },
   methods: {
     logout() {
-      axios.post("logout").then((res) => (window.location = "/login"));
+      axios.post("/logout").then((res) => (window.location = "/login"));
     },
   },
 };

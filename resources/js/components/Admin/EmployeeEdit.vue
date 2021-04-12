@@ -5,14 +5,14 @@
         <section class="w-full">
           <div class="bg-white shadow-md px-2 py-2">
             <div class="flex justify-center">
-              <h6 class="mt-2 font-bold">{{ forms.employees.Fname }}</h6>
+              <h6 class="mt-2 font-bold">{{ forms.employees.salutation }}: {{ forms.employees.Fname }}</h6>
             </div>
 
             <section class="p-2 w-full mt-2">
               <div class="rounded border py-3 px-3">
                 <div class="text-center mb-3">
                   <h3 class="text-green-500 font-bold text-xl">
-                    Employee Information Sheet.
+                    Personal Information.
                   </h3>
                 </div>
 
@@ -37,7 +37,7 @@
                   </div>
                   <div>
                     <label class="text-blue-500 font-bold"
-                      >Apartment/Unit</label
+                      >City</label
                     >
                     <p class="form-control-static">
                       {{ forms.employees.city }}
@@ -45,7 +45,7 @@
                   </div>
                   <div>
                     <label class="text-blue-500 font-bold"
-                      >Apartment/Unit</label
+                      >State</label
                     >
                     <p class="form-control-static">
                       {{ forms.employees.state }}
@@ -53,7 +53,7 @@
                   </div>
                   <div>
                     <label class="text-blue-500 font-bold"
-                      >Apartment/Unit</label
+                      >Postal Code</label
                     >
                     <p class="form-control-static">
                       {{ forms.employees.Zcode }}
@@ -79,7 +79,7 @@
                     </p>
                   </div>
                   <div>
-                    <label class="text-blue-500 font-bold">Email Address</label>
+                    <label class="text-blue-500 font-bold">Personal Email Address</label>
                     <p class="form-control-static">
                       {{ forms.employees.Pemail }}
                     </p>
@@ -91,7 +91,7 @@
                     </p>
                   </div>
                   <div>
-                    <label class="text-blue-500 font-bold">Pin Number</label>
+                    <label class="text-blue-500 font-bold">Tax Pin Number</label>
                     <p class="form-control-static">
                       {{ forms.employees.Krapin }}
                     </p>
@@ -154,6 +154,37 @@
                     ></datepicker>
                   </div>
                 </div>
+
+                <div
+                  class="flex justify-between mt-2 border rounded-md shadow-md px-3 py-2"
+                >
+                  <div>
+                    <label class="text-blue-500 font-bold">Bank Name</label>
+                    <p class="form-control-static">
+                      {{ forms.employees.Bankname }}
+                    </p>
+                  </div>
+                  <div>
+                    <label class="text-blue-500 font-bold">Account Number</label>
+                    <p class="form-control-static">
+                      {{ forms.employees.AccNo }}
+                    </p>
+                  </div>
+                  <div>
+                    <label class="text-blue-500 font-bold">Branch Name</label>
+                    <p class="form-control-static">
+                      {{ forms.employees.Branchname }}
+                    </p>
+                  </div>
+                  <div>
+                    <label class="text-blue-500 font-bold"
+                      >Branch Code
+                    </label>
+                    <p class="form-control-static">
+                      {{ forms.employees.Branchcode }}
+                    </p>
+                  </div>
+                </div>
               </div>
 
               <div class="rounded border mt-3 py-3 px-3">
@@ -167,7 +198,7 @@
                   class="flex justify-between mt-2 border rounded-md shadow-md px-3 py-2"
                 >
                   <div>
-                    <label class="text-blue-500 font-bold">Title</label>
+                    <label class="text-blue-500 font-bold">Job Title</label>
                     <p class="form-control-static">
                       {{ forms.job_infos.title }}
                     </p>
@@ -203,7 +234,7 @@
                 >
                   <div>
                     <label class="text-blue-500 font-bold"
-                      >E-mail Address</label
+                      >Job E-mail Address</label
                     >
                     <p class="form-control-static">
                       {{ forms.job_infos.Wemail }}
@@ -224,13 +255,19 @@
                   <div>
                     <label class="text-blue-500 font-bold">Start Date</label>
                     <p class="form-control-static">
-                      {{ forms.job_infos.Sdate }}
+                      <datepicker v-model="forms.job_infos.Sdate"></datepicker>
                     </p>
                   </div>
                   <div>
                     <label class="text-blue-500 font-bold">Salary</label>
                     <p class="form-control-static">
                       {{ forms.job_infos.salary }}
+                    </p>
+                  </div>
+                  <div>
+                    <label class="text-blue-500 font-bold">Currency</label>
+                    <p class="form-control-static">
+                      {{ forms.job_infos.currency }}
                     </p>
                   </div>
                 </div>
@@ -286,7 +323,7 @@
                   class="flex justify-between mt-2 border rounded-md shadow-md px-3 py-2"
                 >
                   <div>
-                    <label class="text-blue-500 font-bold">Zip Code</label>
+                    <label class="text-blue-500 font-bold">Postal Code</label>
                     <p class="form-control-static">
                       {{ forms.emergency.Zcode }}
                     </p>

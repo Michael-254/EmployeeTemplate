@@ -26,6 +26,7 @@ class CreateJobInfosTable extends Migration
             $table->string('Wemail')->nullable();
             $table->string('Sdate')->nullable();
             $table->string('salary')->nullable();
+            $table->string('currency')->nullable();
             $table->timestamps();
         });
     }

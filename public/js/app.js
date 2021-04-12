@@ -2252,6 +2252,43 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["forms"],
@@ -2348,6 +2385,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2356,7 +2394,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     logout: function logout() {
-      axios.post("logout").then(function (res) {
+      axios.post("/logout").then(function (res) {
         return window.location = "/login";
       });
     }
@@ -2377,6 +2415,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var vuejs_datepicker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuejs-datepicker */ "./node_modules/vuejs-datepicker/dist/vuejs-datepicker.esm.js");
+//
+//
 //
 //
 //
@@ -2575,6 +2615,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
 //
 //
 //
@@ -3002,6 +3044,69 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -3030,7 +3135,12 @@ __webpack_require__.r(__webpack_exports__);
         status: "",
         spouseN: "",
         spouseE: "",
-        spousePhone: ""
+        spousePhone: "",
+        salutation: "",
+        Bankname: "",
+        AccNo: "",
+        Branchname: "",
+        Branchcode: ""
       },
       errors: {}
     };
@@ -3076,6 +3186,69 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var vuejs_datepicker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuejs-datepicker */ "./node_modules/vuejs-datepicker/dist/vuejs-datepicker.esm.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3705,6 +3878,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -3724,7 +3913,8 @@ __webpack_require__.r(__webpack_exports__);
         Cphone: "",
         Wphone: "",
         Sdate: "",
-        salary: ""
+        salary: "",
+        currency: ""
       },
       errors: {}
     };
@@ -3763,6 +3953,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var vuejs_datepicker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuejs-datepicker */ "./node_modules/vuejs-datepicker/dist/vuejs-datepicker.esm.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4032,7 +4238,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  middleware: "auth",
   mounted: function mounted() {
     this.getResults();
   },
@@ -4040,8 +4264,9 @@ __webpack_require__.r(__webpack_exports__);
     return {
       data: {},
       filters: {},
-      filterId: '',
-      dept: ''
+      filterId: "",
+      dept: "",
+      user: window.user
     };
   },
   watch: {
@@ -4057,7 +4282,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
-      axios.get('/Admin?page=' + page + '&filterId=' + this.filterId + '&dept=' + this.dept).then(function (response) {
+      axios.get("/Admin?page=" + page + "&filterId=" + this.filterId + "&dept=" + this.dept).then(function (response) {
         _this.data = response.data.data;
         _this.filters = response.data.filter;
       });
@@ -4085,6 +4310,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_index_EmergencyC__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/index/EmergencyC */ "./resources/js/components/index/EmergencyC.vue");
 /* harmony import */ var _components_index_EmergencyEdit__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/index/EmergencyEdit */ "./resources/js/components/index/EmergencyEdit.vue");
 /* harmony import */ var _components_index_Image__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/index/Image */ "./resources/js/components/index/Image.vue");
+//
+//
+//
 //
 //
 //
@@ -4311,6 +4539,18 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__.default({
   routes: routes,
   hashbang: false,
   mode: "history"
+});
+router.beforeEach(function (to, from, next) {
+  var middleware = to.matched[0].components["default"].middleware;
+
+  if (middleware == "auth") {
+    if (!window.loggedIn) {
+      window.location = "/login";
+      return;
+    }
+  }
+
+  next();
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (router);
 
@@ -47174,7 +47414,11 @@ var render = function() {
             _c("div", { staticClass: "bg-white shadow-md px-2 py-2" }, [
               _c("div", { staticClass: "flex justify-center" }, [
                 _c("h6", { staticClass: "mt-2 font-bold" }, [
-                  _vm._v(_vm._s(_vm.forms.employees.Fname))
+                  _vm._v(
+                    _vm._s(_vm.forms.employees.salutation) +
+                      ": " +
+                      _vm._s(_vm.forms.employees.Fname)
+                  )
                 ])
               ]),
               _vm._v(" "),
@@ -47186,7 +47430,7 @@ var render = function() {
                       { staticClass: "text-green-500 font-bold text-xl" },
                       [
                         _vm._v(
-                          "\n                  Employee Information Sheet.\n                "
+                          "\n                  Personal Information.\n                "
                         )
                       ]
                     )
@@ -47235,7 +47479,7 @@ var render = function() {
                         _c(
                           "label",
                           { staticClass: "text-blue-500 font-bold" },
-                          [_vm._v("Apartment/Unit")]
+                          [_vm._v("City")]
                         ),
                         _vm._v(" "),
                         _c("p", { staticClass: "form-control-static" }, [
@@ -47251,7 +47495,7 @@ var render = function() {
                         _c(
                           "label",
                           { staticClass: "text-blue-500 font-bold" },
-                          [_vm._v("Apartment/Unit")]
+                          [_vm._v("State")]
                         ),
                         _vm._v(" "),
                         _c("p", { staticClass: "form-control-static" }, [
@@ -47267,7 +47511,7 @@ var render = function() {
                         _c(
                           "label",
                           { staticClass: "text-blue-500 font-bold" },
-                          [_vm._v("Apartment/Unit")]
+                          [_vm._v("Postal Code")]
                         ),
                         _vm._v(" "),
                         _c("p", { staticClass: "form-control-static" }, [
@@ -47324,7 +47568,7 @@ var render = function() {
                         _c(
                           "label",
                           { staticClass: "text-blue-500 font-bold" },
-                          [_vm._v("Email Address")]
+                          [_vm._v("Personal Email Address")]
                         ),
                         _vm._v(" "),
                         _c("p", { staticClass: "form-control-static" }, [
@@ -47356,7 +47600,7 @@ var render = function() {
                         _c(
                           "label",
                           { staticClass: "text-blue-500 font-bold" },
-                          [_vm._v("Pin Number")]
+                          [_vm._v("Tax Pin Number")]
                         ),
                         _vm._v(" "),
                         _c("p", { staticClass: "form-control-static" }, [
@@ -47516,7 +47760,80 @@ var render = function() {
                           )
                         ]
                       )
-                    : _vm._e()
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "flex justify-between mt-2 border rounded-md shadow-md px-3 py-2"
+                    },
+                    [
+                      _c("div", [
+                        _c(
+                          "label",
+                          { staticClass: "text-blue-500 font-bold" },
+                          [_vm._v("Bank Name")]
+                        ),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "form-control-static" }, [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(_vm.forms.employees.Bankname) +
+                              "\n                  "
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", [
+                        _c(
+                          "label",
+                          { staticClass: "text-blue-500 font-bold" },
+                          [_vm._v("Account Number")]
+                        ),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "form-control-static" }, [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(_vm.forms.employees.AccNo) +
+                              "\n                  "
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", [
+                        _c(
+                          "label",
+                          { staticClass: "text-blue-500 font-bold" },
+                          [_vm._v("Branch Name")]
+                        ),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "form-control-static" }, [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(_vm.forms.employees.Branchname) +
+                              "\n                  "
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", [
+                        _c(
+                          "label",
+                          { staticClass: "text-blue-500 font-bold" },
+                          [_vm._v("Branch Code\n                  ")]
+                        ),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "form-control-static" }, [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(_vm.forms.employees.Branchcode) +
+                              "\n                  "
+                          )
+                        ])
+                      ])
+                    ]
+                  )
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "rounded border mt-3 py-3 px-3" }, [
@@ -47543,7 +47860,7 @@ var render = function() {
                         _c(
                           "label",
                           { staticClass: "text-blue-500 font-bold" },
-                          [_vm._v("Title")]
+                          [_vm._v("Job Title")]
                         ),
                         _vm._v(" "),
                         _c("p", { staticClass: "form-control-static" }, [
@@ -47632,7 +47949,7 @@ var render = function() {
                         _c(
                           "label",
                           { staticClass: "text-blue-500 font-bold" },
-                          [_vm._v("E-mail Address")]
+                          [_vm._v("Job E-mail Address")]
                         ),
                         _vm._v(" "),
                         _c("p", { staticClass: "form-control-static" }, [
@@ -47683,13 +48000,22 @@ var render = function() {
                           [_vm._v("Start Date")]
                         ),
                         _vm._v(" "),
-                        _c("p", { staticClass: "form-control-static" }, [
-                          _vm._v(
-                            "\n                    " +
-                              _vm._s(_vm.forms.job_infos.Sdate) +
-                              "\n                  "
-                          )
-                        ])
+                        _c(
+                          "p",
+                          { staticClass: "form-control-static" },
+                          [
+                            _c("datepicker", {
+                              model: {
+                                value: _vm.forms.job_infos.Sdate,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.forms.job_infos, "Sdate", $$v)
+                                },
+                                expression: "forms.job_infos.Sdate"
+                              }
+                            })
+                          ],
+                          1
+                        )
                       ]),
                       _vm._v(" "),
                       _c("div", [
@@ -47703,6 +48029,22 @@ var render = function() {
                           _vm._v(
                             "\n                    " +
                               _vm._s(_vm.forms.job_infos.salary) +
+                              "\n                  "
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", [
+                        _c(
+                          "label",
+                          { staticClass: "text-blue-500 font-bold" },
+                          [_vm._v("Currency")]
+                        ),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "form-control-static" }, [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(_vm.forms.job_infos.currency) +
                               "\n                  "
                           )
                         ])
@@ -47824,7 +48166,7 @@ var render = function() {
                         _c(
                           "label",
                           { staticClass: "text-blue-500 font-bold" },
-                          [_vm._v("Zip Code")]
+                          [_vm._v("Postal Code")]
                         ),
                         _vm._v(" "),
                         _c("p", { staticClass: "form-control-static" }, [
@@ -48093,19 +48435,21 @@ var render = function() {
               1
             ),
             _vm._v(" "),
-            _c(
-              "span",
-              {
-                staticClass:
-                  "font-bold text-white cursor-pointer hover:underline ml-3 mt-1"
-              },
-              [
-                _c("router-link", { attrs: { to: "/Employees" } }, [
-                  _vm._v("View Employees")
-                ])
-              ],
-              1
-            )
+            _vm.user.admin == true
+              ? _c(
+                  "span",
+                  {
+                    staticClass:
+                      "font-bold text-white cursor-pointer hover:underline ml-3 mt-1"
+                  },
+                  [
+                    _c("router-link", { attrs: { to: "/Employees" } }, [
+                      _vm._v("View Employees")
+                    ])
+                  ],
+                  1
+                )
+              : _vm._e()
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "flex float-right text-white" }, [
@@ -48416,7 +48760,7 @@ var render = function() {
                               _c(
                                 "label",
                                 { staticClass: "text-blue-500 font-semibold" },
-                                [_vm._v("Zip Code")]
+                                [_vm._v("Postal Code")]
                               ),
                               _vm._v(" "),
                               _c("input", {
@@ -48544,7 +48888,8 @@ var render = function() {
                                   }
                                 ],
                                 staticClass:
-                                  "w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600",
+                                  "w-full py-2 px-2 rounded-lg shadow-sm focus:outline-none focus:shadow-outline bg-gray-200 text-gray-600",
+                                attrs: { type: "text" },
                                 domProps: { value: _vm.form.relationship },
                                 on: {
                                   input: function($event) {
@@ -48880,7 +49225,7 @@ var render = function() {
                                         staticClass:
                                           "text-blue-500 font-semibold"
                                       },
-                                      [_vm._v("Zip Code")]
+                                      [_vm._v("Postal Code")]
                                     ),
                                     _vm._v(" "),
                                     _c("input", {
@@ -49013,7 +49358,8 @@ var render = function() {
                                         }
                                       ],
                                       staticClass:
-                                        "w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600",
+                                        "w-full py-2 px-2 rounded-lg shadow-sm focus:outline-none focus:shadow-outline bg-gray-200 text-gray-600",
+                                      attrs: { type: "text" },
                                       domProps: { value: form.relationship },
                                       on: {
                                         input: function($event) {
@@ -49090,7 +49436,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("section", { staticClass: "max-w-3xl mx-auto mt-5 font-mono" }, [
+    _c("section", { staticClass: "max-w-3xl mx-auto mt-3 font-mono" }, [
       _c(
         "form",
         {
@@ -49121,7 +49467,7 @@ var render = function() {
                         }
                       }
                     },
-                    [_vm._v("Employee Information Sheet.")]
+                    [_vm._v("Personal Information")]
                   ),
                   _vm._v(" "),
                   _c("transition", { attrs: { name: "slide-fade" } }, [
@@ -49148,6 +49494,76 @@ var render = function() {
                                   {
                                     staticClass: "text-blue-500 font-semibold"
                                   },
+                                  [_vm._v("Title")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "select",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.form.salutation,
+                                        expression: "form.salutation"
+                                      }
+                                    ],
+                                    staticClass:
+                                      "w-full py-2 px-2 rounded-lg shadow-sm focus:outline-none focus:shadow-outline bg-gray-200 text-gray-600",
+                                    attrs: { type: "text" },
+                                    on: {
+                                      change: function($event) {
+                                        var $$selectedVal = Array.prototype.filter
+                                          .call($event.target.options, function(
+                                            o
+                                          ) {
+                                            return o.selected
+                                          })
+                                          .map(function(o) {
+                                            var val =
+                                              "_value" in o ? o._value : o.value
+                                            return val
+                                          })
+                                        _vm.$set(
+                                          _vm.form,
+                                          "salutation",
+                                          $event.target.multiple
+                                            ? $$selectedVal
+                                            : $$selectedVal[0]
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("option", { attrs: { value: "" } }, [
+                                      _vm._v("-- Select Title --")
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("option", { attrs: { value: "Mr" } }, [
+                                      _vm._v("Mr")
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("option", { attrs: { value: "Miss" } }, [
+                                      _vm._v("Miss")
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("option", { attrs: { value: "Mrs" } }, [
+                                      _vm._v("Mrs")
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("option", { attrs: { value: "Dr" } }, [
+                                      _vm._v("Dr")
+                                    ])
+                                  ]
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "flex-1" }, [
+                                _c(
+                                  "label",
+                                  {
+                                    staticClass: "text-blue-500 font-semibold"
+                                  },
                                   [_vm._v("Full Name")]
                                 ),
                                 _vm._v(" "),
@@ -49162,7 +49578,10 @@ var render = function() {
                                   ],
                                   staticClass:
                                     "w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600",
-                                  attrs: { type: "text" },
+                                  attrs: {
+                                    placeholder: "(Surname) Other Names",
+                                    type: "text"
+                                  },
                                   domProps: { value: _vm.form.Fname },
                                   on: {
                                     input: function($event) {
@@ -49345,7 +49764,7 @@ var render = function() {
                                   {
                                     staticClass: "text-blue-500 font-semibold"
                                   },
-                                  [_vm._v("Zip Code")]
+                                  [_vm._v("Postal Code")]
                                 ),
                                 _vm._v(" "),
                                 _c("input", {
@@ -49460,7 +49879,7 @@ var render = function() {
                                   {
                                     staticClass: "text-blue-500 font-semibold"
                                   },
-                                  [_vm._v("Email Address")]
+                                  [_vm._v("Peronal Email Address")]
                                 ),
                                 _vm._v(" "),
                                 _c("input", {
@@ -49499,11 +49918,7 @@ var render = function() {
                                   {
                                     staticClass: "text-blue-500 font-semibold"
                                   },
-                                  [
-                                    _vm._v(
-                                      "Number of National ID\n                  "
-                                    )
-                                  ]
+                                  [_vm._v("National ID\n                  ")]
                                 ),
                                 _vm._v(" "),
                                 _c("input", {
@@ -49548,7 +49963,7 @@ var render = function() {
                                   {
                                     staticClass: "text-blue-500 font-semibold"
                                   },
-                                  [_vm._v("Pin Number\n                  ")]
+                                  [_vm._v("Tax Pin Number\n                  ")]
                                 ),
                                 _vm._v(" "),
                                 _c("input", {
@@ -49646,6 +50061,158 @@ var render = function() {
                                       _vm.$set(
                                         _vm.form,
                                         "nhif",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                })
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "mt-2 flex space-x-2" }, [
+                              _c("div", { staticClass: "flex-1" }, [
+                                _c(
+                                  "label",
+                                  {
+                                    staticClass: "text-blue-500 font-semibold"
+                                  },
+                                  [_vm._v("Bank Name")]
+                                ),
+                                _vm._v(" "),
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.form.Bankname,
+                                      expression: "form.Bankname"
+                                    }
+                                  ],
+                                  staticClass:
+                                    "w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600",
+                                  attrs: { type: "text" },
+                                  domProps: { value: _vm.form.Bankname },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.form,
+                                        "Bankname",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                })
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "mt-2 flex space-x-2" }, [
+                              _c("div", { staticClass: "flex-1" }, [
+                                _c(
+                                  "label",
+                                  {
+                                    staticClass: "text-blue-500 font-semibold"
+                                  },
+                                  [_vm._v("Account Number")]
+                                ),
+                                _vm._v(" "),
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.form.AccNo,
+                                      expression: "form.AccNo"
+                                    }
+                                  ],
+                                  staticClass:
+                                    "w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600",
+                                  attrs: { type: "text" },
+                                  domProps: { value: _vm.form.AccNo },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.form,
+                                        "AccNo",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "flex-1" }, [
+                                _c(
+                                  "label",
+                                  {
+                                    staticClass: "text-blue-500 font-semibold"
+                                  },
+                                  [_vm._v("Branch Name")]
+                                ),
+                                _vm._v(" "),
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.form.Branchname,
+                                      expression: "form.Branchname"
+                                    }
+                                  ],
+                                  staticClass:
+                                    "w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600",
+                                  attrs: { type: "text" },
+                                  domProps: { value: _vm.form.Branchname },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.form,
+                                        "Branchname",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "flex-1" }, [
+                                _c(
+                                  "label",
+                                  {
+                                    staticClass: "text-blue-500 font-semibold"
+                                  },
+                                  [_vm._v("Branch Code")]
+                                ),
+                                _vm._v(" "),
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.form.Branchcode,
+                                      expression: "form.Branchcode"
+                                    }
+                                  ],
+                                  staticClass:
+                                    "w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600",
+                                  attrs: { type: "text" },
+                                  domProps: { value: _vm.form.Branchcode },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.form,
+                                        "Branchcode",
                                         $event.target.value
                                       )
                                     }
@@ -49967,7 +50534,7 @@ var render = function() {
     _vm._l(_vm.form, function(form) {
       return _c(
         "section",
-        { key: form.id, staticClass: "max-w-3xl mx-auto mt-5 font-mono" },
+        { key: form.id, staticClass: "max-w-3xl mx-auto mt-3 font-mono" },
         [
           _c(
             "form",
@@ -49999,7 +50566,7 @@ var render = function() {
                             }
                           }
                         },
-                        [_vm._v("Employee Information Sheet.")]
+                        [_vm._v("Personal Information")]
                       ),
                       _vm._v(" "),
                       _c("transition", { attrs: { name: "slide-fade" } }, [
@@ -50030,6 +50597,90 @@ var render = function() {
                                           staticClass:
                                             "text-blue-500 font-semibold"
                                         },
+                                        [_vm._v("Title")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "select",
+                                        {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: form.salutation,
+                                              expression: "form.salutation"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "w-full py-2 px-2 rounded-lg shadow-sm focus:outline-none focus:shadow-outline bg-gray-200 text-gray-600",
+                                          attrs: { type: "text" },
+                                          on: {
+                                            change: function($event) {
+                                              var $$selectedVal = Array.prototype.filter
+                                                .call(
+                                                  $event.target.options,
+                                                  function(o) {
+                                                    return o.selected
+                                                  }
+                                                )
+                                                .map(function(o) {
+                                                  var val =
+                                                    "_value" in o
+                                                      ? o._value
+                                                      : o.value
+                                                  return val
+                                                })
+                                              _vm.$set(
+                                                form,
+                                                "salutation",
+                                                $event.target.multiple
+                                                  ? $$selectedVal
+                                                  : $$selectedVal[0]
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "option",
+                                            { attrs: { value: "" } },
+                                            [_vm._v("-- Select Title --")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "option",
+                                            { attrs: { value: "Mr" } },
+                                            [_vm._v("Mr")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "option",
+                                            { attrs: { value: "Miss" } },
+                                            [_vm._v("Miss")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "option",
+                                            { attrs: { value: "Mrs" } },
+                                            [_vm._v("Mrs")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "option",
+                                            { attrs: { value: "Dr" } },
+                                            [_vm._v("Dr")]
+                                          )
+                                        ]
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "flex-1" }, [
+                                      _c(
+                                        "label",
+                                        {
+                                          staticClass:
+                                            "text-blue-500 font-semibold"
+                                        },
                                         [_vm._v("Full Name")]
                                       ),
                                       _vm._v(" "),
@@ -50044,7 +50695,10 @@ var render = function() {
                                         ],
                                         staticClass:
                                           "w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600",
-                                        attrs: { type: "text" },
+                                        attrs: {
+                                          placeholder: "Surname, other names",
+                                          type: "text"
+                                        },
                                         domProps: { value: form.Fname },
                                         on: {
                                           input: function($event) {
@@ -50232,7 +50886,7 @@ var render = function() {
                                           staticClass:
                                             "text-blue-500 font-semibold"
                                         },
-                                        [_vm._v("Zip Code")]
+                                        [_vm._v("Postal Code")]
                                       ),
                                       _vm._v(" "),
                                       _c("input", {
@@ -50358,7 +51012,7 @@ var render = function() {
                                           staticClass:
                                             "text-blue-500 font-semibold"
                                         },
-                                        [_vm._v("Email Address")]
+                                        [_vm._v("Personal Email Address")]
                                       ),
                                       _vm._v(" "),
                                       _c("input", {
@@ -50404,7 +51058,7 @@ var render = function() {
                                         },
                                         [
                                           _vm._v(
-                                            "Number of National ID\n                  "
+                                            "National ID\n                  "
                                           )
                                         ]
                                       ),
@@ -50446,7 +51100,7 @@ var render = function() {
                                         },
                                         [
                                           _vm._v(
-                                            "Pin Number\n                  "
+                                            "Tax Pin Number\n                  "
                                           )
                                         ]
                                       ),
@@ -50548,6 +51202,170 @@ var render = function() {
                                             _vm.$set(
                                               form,
                                               "nhif",
+                                              $event.target.value
+                                            )
+                                          }
+                                        }
+                                      })
+                                    ])
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "mt-2 flex space-x-2" },
+                                  [
+                                    _c("div", { staticClass: "flex-1" }, [
+                                      _c(
+                                        "label",
+                                        {
+                                          staticClass:
+                                            "text-blue-500 font-semibold"
+                                        },
+                                        [_vm._v("Bank Name")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: form.Bankname,
+                                            expression: "form.Bankname"
+                                          }
+                                        ],
+                                        staticClass:
+                                          "w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600",
+                                        attrs: { type: "text" },
+                                        domProps: { value: form.Bankname },
+                                        on: {
+                                          input: function($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.$set(
+                                              form,
+                                              "Bankname",
+                                              $event.target.value
+                                            )
+                                          }
+                                        }
+                                      })
+                                    ])
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "mt-2 flex space-x-2" },
+                                  [
+                                    _c("div", { staticClass: "flex-1" }, [
+                                      _c(
+                                        "label",
+                                        {
+                                          staticClass:
+                                            "text-blue-500 font-semibold"
+                                        },
+                                        [_vm._v("Account Number")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: form.AccNo,
+                                            expression: "form.AccNo"
+                                          }
+                                        ],
+                                        staticClass:
+                                          "w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600",
+                                        attrs: { type: "text" },
+                                        domProps: { value: form.AccNo },
+                                        on: {
+                                          input: function($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.$set(
+                                              form,
+                                              "AccNo",
+                                              $event.target.value
+                                            )
+                                          }
+                                        }
+                                      })
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "flex-1" }, [
+                                      _c(
+                                        "label",
+                                        {
+                                          staticClass:
+                                            "text-blue-500 font-semibold"
+                                        },
+                                        [_vm._v("Branch Name")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: form.Branchname,
+                                            expression: "form.Branchname"
+                                          }
+                                        ],
+                                        staticClass:
+                                          "w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600",
+                                        attrs: { type: "text" },
+                                        domProps: { value: form.Branchname },
+                                        on: {
+                                          input: function($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.$set(
+                                              form,
+                                              "Branchname",
+                                              $event.target.value
+                                            )
+                                          }
+                                        }
+                                      })
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "flex-1" }, [
+                                      _c(
+                                        "label",
+                                        {
+                                          staticClass:
+                                            "text-blue-500 font-semibold"
+                                        },
+                                        [_vm._v("Branch Code")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: form.Branchcode,
+                                            expression: "form.Branchcode"
+                                          }
+                                        ],
+                                        staticClass:
+                                          "w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600",
+                                        attrs: { type: "text" },
+                                        domProps: { value: form.Branchcode },
+                                        on: {
+                                          input: function($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.$set(
+                                              form,
+                                              "Branchcode",
                                               $event.target.value
                                             )
                                           }
@@ -51241,7 +52059,7 @@ var render = function() {
                               _c(
                                 "label",
                                 { staticClass: "text-blue-500 font-semibold" },
-                                [_vm._v("Title")]
+                                [_vm._v("Job Title")]
                               ),
                               _vm._v(" "),
                               _c("input", {
@@ -51444,7 +52262,7 @@ var render = function() {
                               _c(
                                 "label",
                                 { staticClass: "text-blue-500 font-semibold" },
-                                [_vm._v("E-mail Address")]
+                                [_vm._v("Job E-mail Address")]
                               ),
                               _vm._v(" "),
                               _c("input", {
@@ -51610,6 +52428,74 @@ var render = function() {
                                   }
                                 }
                               })
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "flex-1" }, [
+                              _c(
+                                "label",
+                                { staticClass: "text-blue-500 font-semibold" },
+                                [_vm._v("Currency")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "select",
+                                {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.form.currency,
+                                      expression: "form.currency"
+                                    }
+                                  ],
+                                  staticClass:
+                                    "w-full py-2 px-2 rounded-lg shadow-sm focus:outline-none focus:shadow-outline bg-gray-200 text-gray-600",
+                                  attrs: { type: "text" },
+                                  on: {
+                                    change: function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.$set(
+                                        _vm.form,
+                                        "currency",
+                                        $event.target.multiple
+                                          ? $$selectedVal
+                                          : $$selectedVal[0]
+                                      )
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("option", { attrs: { value: "" } }, [
+                                    _vm._v("-- Select Title --")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "USD" } }, [
+                                    _vm._v("USD")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "Kshs" } }, [
+                                    _vm._v("Kshs")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "UGX" } }, [
+                                    _vm._v("UGX")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "Tshs" } }, [
+                                    _vm._v("Tshs")
+                                  ])
+                                ]
+                              )
                             ])
                           ]),
                           _vm._v(" "),
@@ -51729,7 +52615,7 @@ var render = function() {
                                         staticClass:
                                           "text-blue-500 font-semibold"
                                       },
-                                      [_vm._v("Title")]
+                                      [_vm._v("Job Title")]
                                     ),
                                     _vm._v(" "),
                                     _c("input", {
@@ -51945,7 +52831,7 @@ var render = function() {
                                         staticClass:
                                           "text-blue-500 font-semibold"
                                       },
-                                      [_vm._v("E-mail Address")]
+                                      [_vm._v("Job E-mail Address")]
                                     ),
                                     _vm._v(" "),
                                     _c("input", {
@@ -52129,6 +53015,88 @@ var render = function() {
                                         }
                                       }
                                     })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "flex-1" }, [
+                                    _c(
+                                      "label",
+                                      {
+                                        staticClass:
+                                          "text-blue-500 font-semibold"
+                                      },
+                                      [_vm._v("Currency")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "select",
+                                      {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: form.currency,
+                                            expression: "form.currency"
+                                          }
+                                        ],
+                                        staticClass:
+                                          "w-full py-2 px-2 rounded-lg shadow-sm focus:outline-none focus:shadow-outline bg-gray-200 text-gray-600",
+                                        attrs: { type: "text" },
+                                        on: {
+                                          change: function($event) {
+                                            var $$selectedVal = Array.prototype.filter
+                                              .call(
+                                                $event.target.options,
+                                                function(o) {
+                                                  return o.selected
+                                                }
+                                              )
+                                              .map(function(o) {
+                                                var val =
+                                                  "_value" in o
+                                                    ? o._value
+                                                    : o.value
+                                                return val
+                                              })
+                                            _vm.$set(
+                                              form,
+                                              "currency",
+                                              $event.target.multiple
+                                                ? $$selectedVal
+                                                : $$selectedVal[0]
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c("option", { attrs: { value: "" } }, [
+                                          _vm._v("-- Select Title --")
+                                        ]),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "USD" } },
+                                          [_vm._v("USD")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "Kshs" } },
+                                          [_vm._v("Kshs")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "UGX" } },
+                                          [_vm._v("UGX")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "Tshs" } },
+                                          [_vm._v("Tshs")]
+                                        )
+                                      ]
+                                    )
                                   ])
                                 ]
                               ),
@@ -52202,7 +53170,7 @@ var render = function() {
               staticClass:
                 "text-center text-xl text-blue-700 font-bold font-sans m-2"
             },
-            [_vm._v("Employees")]
+            [_vm._v("\n        Employees\n      ")]
           ),
           _vm._v(" "),
           _c("div", { staticClass: "flex float-center mb-2 space-x-2" }, [
@@ -52218,7 +53186,7 @@ var render = function() {
                   }
                 ],
                 staticClass:
-                  "w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none\n                focus:shadow-outline text-gray-600",
+                  "w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600",
                 attrs: { type: "text" },
                 on: {
                   change: function($event) {
@@ -52238,14 +53206,18 @@ var render = function() {
               },
               [
                 _c("option", { attrs: { value: "" } }, [
-                  _vm._v(" -- Filter By Name -- ")
+                  _vm._v("-- Filter By Name --")
                 ]),
                 _vm._v(" "),
                 _vm._l(_vm.filters, function(filter) {
                   return _c(
                     "option",
                     { key: filter.id, domProps: { value: filter.id } },
-                    [_vm._v(" " + _vm._s(filter.name) + " ")]
+                    [
+                      _vm._v(
+                        "\n            " + _vm._s(filter.name) + "\n          "
+                      )
+                    ]
                   )
                 })
               ],
@@ -52264,7 +53236,7 @@ var render = function() {
                   }
                 ],
                 staticClass:
-                  "w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none\n                focus:shadow-outline text-gray-600",
+                  "w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600",
                 on: {
                   change: function($event) {
                     var $$selectedVal = Array.prototype.filter
@@ -52283,7 +53255,7 @@ var render = function() {
               },
               [
                 _c("option", { attrs: { value: "" } }, [
-                  _vm._v(" -- Filter by Department -- ")
+                  _vm._v("-- Filter by Department --")
                 ]),
                 _vm._v(" "),
                 _c("option", { attrs: { value: "Management" } }, [
@@ -52349,16 +53321,12 @@ var render = function() {
                                 {
                                   staticClass: "font-bold badge badge-success"
                                 },
-                                [
-                                  _vm._v(
-                                    "\n                       Name:\n                    "
-                                  )
-                                ]
+                                [_vm._v(" Name: ")]
                               ),
                               _vm._v(
-                                " \n                    " +
+                                "\n                    " +
                                   _vm._s(user.name) +
-                                  "\n                    "
+                                  "\n                  "
                               )
                             ]
                           ),
@@ -52378,14 +53346,14 @@ var render = function() {
                                 },
                                 [
                                   _vm._v(
-                                    "\n                       Dept:\n                    "
+                                    "\n                      Dept:\n                    "
                                   )
                                 ]
                               ),
                               _vm._v(
-                                " \n                   " +
+                                "\n                    " +
                                   _vm._s(user.department) +
-                                  "\n                   "
+                                  "\n                  "
                               )
                             ]
                           ),
@@ -52402,14 +53370,12 @@ var render = function() {
                                 {
                                   staticClass: "font-bold badge badge-primary"
                                 },
-                                [
-                                  _vm._v(
-                                    "\n                       Site:\n                    "
-                                  )
-                                ]
+                                [_vm._v(" Site: ")]
                               ),
                               _vm._v(
-                                " \n                     " + _vm._s(user.site)
+                                "\n                    " +
+                                  _vm._s(user.site) +
+                                  "\n                  "
                               )
                             ]
                           ),
@@ -52501,6 +53467,8 @@ var render = function() {
     [
       _c("bridge-notify"),
       _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
       _vm.data.dataA != ""
         ? _c(
             "div",
@@ -52566,7 +53534,18 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("h3", { staticClass: "text-blue-500 text-center font-bold text-xl" }, [
+        _vm._v("Employee Information Sheet")
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 

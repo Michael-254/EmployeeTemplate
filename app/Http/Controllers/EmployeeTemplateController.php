@@ -12,6 +12,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 class EmployeeTemplateController extends Controller
 {
+
+    
     public function index()
     {
         $dataA = auth()->user()->Employees()->get();

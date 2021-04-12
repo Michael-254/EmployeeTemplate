@@ -73,7 +73,7 @@
                     />
                   </div>
                   <div class="flex-1">
-                    <label class="text-blue-500 font-semibold">Zip Code</label>
+                    <label class="text-blue-500 font-semibold">Postal Code</label>
                     <input
                       v-model="form.Zcode"
                       type="text"
@@ -109,8 +109,10 @@
                     >
                     <textarea
                       v-model="form.relationship"
-                      class="w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600"
-                    ></textarea>
+                      type="text"
+                      class="w-full py-2 px-2 rounded-lg shadow-sm focus:outline-none focus:shadow-outline bg-gray-200 text-gray-600"
+                    >
+                    </textarea>
                   </div>
                 </div>
 

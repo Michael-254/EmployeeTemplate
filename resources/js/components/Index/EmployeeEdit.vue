@@ -1,7 +1,7 @@
 <template>
   <div>
     <section
-      class="max-w-3xl mx-auto mt-5 font-mono"
+      class="max-w-3xl mx-auto mt-3 font-mono"
       v-for="form in form"
       :key="form.id"
     >
@@ -11,7 +11,7 @@
             <span
               @click="showForm = !showForm"
               class="text-xl text-green-500 font-bold md:text-xl cursor-pointer"
-              >Employee Information Sheet.</span
+              >Personal Information</span
             >
             <transition name="slide-fade">
               <div v-if="showForm">
@@ -23,9 +23,26 @@
                 </div>
                 <div class="mt-4 flex space-x-2">
                   <div class="flex-1">
+                    <label class="text-blue-500 font-semibold"
+                      >Title</label
+                    >
+                    <select
+                      v-model="form.salutation"
+                      type="text"
+                      class="w-full py-2 px-2 rounded-lg shadow-sm focus:outline-none focus:shadow-outline bg-gray-200 text-gray-600"
+                    >
+                      <option value="">-- Select Title --</option>
+                      <option value="Mr">Mr</option>
+                      <option value="Miss">Miss</option>
+                      <option value="Mrs">Mrs</option>
+                      <option value="Dr">Dr</option>
+                    </select>
+                  </div>
+                  <div class="flex-1">
                     <label class="text-blue-500 font-semibold">Full Name</label>
                     <input
                       v-model="form.Fname"
+                      placeholder="Surname, other names"
                       type="text"
                       class="w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600"
                     />
@@ -73,7 +90,7 @@
                     />
                   </div>
                   <div class="flex-1">
-                    <label class="text-blue-500 font-semibold">Zip Code</label>
+                    <label class="text-blue-500 font-semibold">Postal Code</label>
                     <input
                       v-model="form.Zcode"
                       type="text"
@@ -108,7 +125,7 @@
                 <div class="mt-2 flex space-x-2">
                   <div class="flex-1">
                     <label class="text-blue-500 font-semibold"
-                      >Email Address</label
+                      >Personal Email Address</label
                     >
                     <input
                       v-model="form.Pemail"
@@ -121,7 +138,7 @@
                 <div class="mt-2 flex space-x-2">
                   <div class="flex-1">
                     <label class="text-blue-500 font-semibold"
-                      >Number of National ID
+                      >National ID
                     </label>
                     <input
                       v-model="form.nationalId"
@@ -131,7 +148,7 @@
                   </div>
                   <div class="flex-1">
                     <label class="text-blue-500 font-semibold"
-                      >Pin Number
+                      >Tax Pin Number
                     </label>
                     <input
                       v-model="form.Krapin"
@@ -155,6 +172,52 @@
                     >
                     <input
                       v-model="form.nhif"
+                      type="text"
+                      class="w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600"
+                    />
+                  </div>
+                </div>
+
+                 <div class="mt-2 flex space-x-2">
+                  <div class="flex-1">
+                    <label class="text-blue-500 font-semibold"
+                      >Bank Name</label
+                    >
+                    <input
+                      v-model="form.Bankname"
+                      type="text"
+                      class="w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600"
+                    />
+                  </div>
+                </div>
+
+                <div class="mt-2 flex space-x-2">
+                  <div class="flex-1">
+                    <label class="text-blue-500 font-semibold"
+                      >Account Number</label
+                    >
+                    <input
+                      v-model="form.AccNo"
+                      type="text"
+                      class="w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600"
+                    />
+                  </div>
+                  <div class="flex-1">
+                    <label class="text-blue-500 font-semibold"
+                      >Branch Name</label
+                    >
+                    <input
+                      v-model="form.Branchname"
+                      type="text"
+                      class="w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600"
+                    />
+                  </div>
+                  <div class="flex-1">
+                    <label class="text-blue-500 font-semibold"
+                      >Branch Code</label
+                    >
+                    <input
+                      v-model="form.Branchcode"
                       type="text"
                       class="w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600"
                     />

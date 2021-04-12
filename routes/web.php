@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,24 +21,26 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
+Route::middleware(['auth'])->group(function () {
+    Route::get('/index', [App\Http\Controllers\EmployeeTemplateController::class, 'index'])->name('index');
 
-Route::get('/index', [App\Http\Controllers\EmployeeTemplateController::class, 'index'])->name('index');
-
-Route::post('/store', [App\Http\Controllers\EmployeeTemplateController::class, 'store'])->name('store');
-Route::post('/storeB', [App\Http\Controllers\EmployeeTemplateController::class, 'storeB'])->name('storeB');
-Route::post('/storeC', [App\Http\Controllers\EmployeeTemplateController::class, 'storeC'])->name('storeC');
-Route::put('/update/{id}', [App\Http\Controllers\EmployeeTemplateController::class, 'update'])->name('update');
-Route::put('/updateB/{id}', [App\Http\Controllers\EmployeeTemplateController::class, 'updateB'])->name('updateB');
-Route::put('/updateC/{id}', [App\Http\Controllers\EmployeeTemplateController::class, 'updateC'])->name('updateC');
-Route::post('/upload', [App\Http\Controllers\EmployeeTemplateController::class, 'upload'])->name('upload');
-Route::delete('/remove/{id}', [App\Http\Controllers\EmployeeTemplateController::class, 'destroy'])->name('remove');
-//file
-Route::get('/View/{id}', [App\Http\Controllers\EmployeeTemplateController::class, 'file'])->name('report.file');
-Route::get('AdminView/View/{id}', [App\Http\Controllers\EmployeeTemplateController::class, 'file'])->name('report.file2');
-
-Route::get('/Admin', [App\Http\Controllers\EmployeeTemplateController::class, 'Admin'])->name('Admin');
-Route::get('/EmployeeView/{id}', [App\Http\Controllers\EmployeeTemplateController::class, 'Adminview'])->name('Admin.view');
+    Route::post('/store', [App\Http\Controllers\EmployeeTemplateController::class, 'store'])->name('store');
+    Route::post('/storeB', [App\Http\Controllers\EmployeeTemplateController::class, 'storeB'])->name('storeB');
+    Route::post('/storeC', [App\Http\Controllers\EmployeeTemplateController::class, 'storeC'])->name('storeC');
+    Route::put('/update/{id}', [App\Http\Controllers\EmployeeTemplateController::class, 'update'])->name('update');
+    Route::put('/updateB/{id}', [App\Http\Controllers\EmployeeTemplateController::class, 'updateB'])->name('updateB');
+    Route::put('/updateC/{id}', [App\Http\Controllers\EmployeeTemplateController::class, 'updateC'])->name('updateC');
+    Route::post('/upload', [App\Http\Controllers\EmployeeTemplateController::class, 'upload'])->name('upload');
+    Route::delete('/remove/{id}', [App\Http\Controllers\EmployeeTemplateController::class, 'destroy'])->name('remove');
+    //file
+    Route::get('/View/{id}', [App\Http\Controllers\EmployeeTemplateController::class, 'file'])->name('report.file');
+    Route::get('AdminView/View/{id}', [App\Http\Controllers\EmployeeTemplateController::class, 'file'])->name('report.file2');
+    
+    Route::middleware(['Administrator'])->group(function () {
+        Route::get('/Admin', [App\Http\Controllers\EmployeeTemplateController::class, 'Admin'])->name('Admin');
+        Route::get('/EmployeeView/{id}', [App\Http\Controllers\EmployeeTemplateController::class, 'Adminview'])->name('Admin.view');
+        });
+    });
 
 Route::post('/logout', function () {
     return Auth::logout();

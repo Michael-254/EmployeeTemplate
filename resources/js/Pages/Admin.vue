@@ -8,20 +8,6 @@
 
         <div class="flex float-center mb-2 space-x-2">
           <select
-            v-model="filterId"
-            type="text"
-            class="w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600"
-          >
-            <option value="">-- Filter By Name --</option>
-            <option
-              v-for="filter in filters"
-              :key="filter.id"
-              :value="filter.id"
-            >
-              {{ filter.name }}
-            </option>
-          </select>
-          <select
             v-model="dept"
             class="w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600"
           >
@@ -35,6 +21,20 @@
             <option value="M&E">Monitoring and Evaluation</option>
             <option value="Miti Magazine">Miti Magazine</option>
             <option value="Communications">Communications</option>
+          </select>
+          <select
+            v-model="filterId"
+            type="text"
+            class="w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600"
+          >
+            <option value="">-- Filter By Name after selecting Dept --</option>
+            <option
+              v-for="filter in filters"
+              :key="filter.id"
+              :value="filter.id"
+            >
+              {{ filter.name }}
+            </option>
           </select>
         </div>
         <div class="flex justify-center">
@@ -106,6 +106,11 @@ export default {
     },
     dept(value) {
       this.getResults();
+       axios
+        .get("/SelectedDept?dept=" + this.dept)
+        .then((response) => {
+          this.filters = response.data.filter;
+        });
     },
   },
   methods: {
@@ -121,7 +126,6 @@ export default {
         )
         .then((response) => {
           this.data = response.data.data;
-          this.filters = response.data.filter;
         });
     },
   },

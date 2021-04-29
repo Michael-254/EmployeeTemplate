@@ -35,12 +35,13 @@ Route::middleware(['auth'])->group(function () {
     //file
     Route::get('/View/{id}', [App\Http\Controllers\EmployeeTemplateController::class, 'file'])->name('report.file');
     Route::get('AdminView/View/{id}', [App\Http\Controllers\EmployeeTemplateController::class, 'file'])->name('report.file2');
-    
+
     Route::middleware(['Administrator'])->group(function () {
         Route::get('/Admin', [App\Http\Controllers\EmployeeTemplateController::class, 'Admin'])->name('Admin');
+        Route::get('/SelectedDept', [App\Http\Controllers\EmployeeTemplateController::class, 'SelectedDept'])->name('select.dept');
         Route::get('/EmployeeView/{id}', [App\Http\Controllers\EmployeeTemplateController::class, 'Adminview'])->name('Admin.view');
-        });
     });
+});
 
 Route::post('/logout', function () {
     return Auth::logout();

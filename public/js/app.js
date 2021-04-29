@@ -1855,6 +1855,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -3894,6 +3896,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -3953,6 +3956,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var vuejs_datepicker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuejs-datepicker */ "./node_modules/vuejs-datepicker/dist/vuejs-datepicker.esm.js");
+//
 //
 //
 //
@@ -4274,17 +4278,21 @@ __webpack_require__.r(__webpack_exports__);
       this.getResults();
     },
     dept: function dept(value) {
+      var _this = this;
+
       this.getResults();
+      axios.get("/SelectedDept?dept=" + this.dept).then(function (response) {
+        _this.filters = response.data.filter;
+      });
     }
   },
   methods: {
     getResults: function getResults() {
-      var _this = this;
+      var _this2 = this;
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
       axios.get("/Admin?page=" + page + "&filterId=" + this.filterId + "&dept=" + this.dept).then(function (response) {
-        _this.data = response.data.data;
-        _this.filters = response.data.filter;
+        _this2.data = response.data.data;
       });
     }
   }
@@ -47375,7 +47383,12 @@ var render = function() {
     [
       _c("app-header", { attrs: { user: _vm.user.name } }),
       _vm._v(" "),
-      _c("router-view"),
+      _c(
+        "transition",
+        { attrs: { name: "fade", mode: "out-in" } },
+        [_c("router-view")],
+        1
+      ),
       _vm._v(" "),
       _c("app-footer")
     ],
@@ -49879,7 +49892,7 @@ var render = function() {
                                   {
                                     staticClass: "text-blue-500 font-semibold"
                                   },
-                                  [_vm._v("Peronal Email Address")]
+                                  [_vm._v("Personal Email Address")]
                                 ),
                                 _vm._v(" "),
                                 _c("input", {
@@ -52493,6 +52506,10 @@ var render = function() {
                                   _vm._v(" "),
                                   _c("option", { attrs: { value: "Tshs" } }, [
                                     _vm._v("Tshs")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "Euros" } }, [
+                                    _vm._v("Euros")
                                   ])
                                 ]
                               )
@@ -53094,6 +53111,12 @@ var render = function() {
                                           "option",
                                           { attrs: { value: "Tshs" } },
                                           [_vm._v("Tshs")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "Euros" } },
+                                          [_vm._v("Euros")]
                                         )
                                       ]
                                     )
@@ -53181,56 +53204,6 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.filterId,
-                    expression: "filterId"
-                  }
-                ],
-                staticClass:
-                  "w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600",
-                attrs: { type: "text" },
-                on: {
-                  change: function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.filterId = $event.target.multiple
-                      ? $$selectedVal
-                      : $$selectedVal[0]
-                  }
-                }
-              },
-              [
-                _c("option", { attrs: { value: "" } }, [
-                  _vm._v("-- Filter By Name --")
-                ]),
-                _vm._v(" "),
-                _vm._l(_vm.filters, function(filter) {
-                  return _c(
-                    "option",
-                    { key: filter.id, domProps: { value: filter.id } },
-                    [
-                      _vm._v(
-                        "\n            " + _vm._s(filter.name) + "\n          "
-                      )
-                    ]
-                  )
-                })
-              ],
-              2
-            ),
-            _vm._v(" "),
-            _c(
-              "select",
-              {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
                     value: _vm.dept,
                     expression: "dept"
                   }
@@ -53294,6 +53267,56 @@ var render = function() {
                   _vm._v("Communications")
                 ])
               ]
+            ),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.filterId,
+                    expression: "filterId"
+                  }
+                ],
+                staticClass:
+                  "w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600",
+                attrs: { type: "text" },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.filterId = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  }
+                }
+              },
+              [
+                _c("option", { attrs: { value: "" } }, [
+                  _vm._v("-- Filter By Name after selecting Dept --")
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.filters, function(filter) {
+                  return _c(
+                    "option",
+                    { key: filter.id, domProps: { value: filter.id } },
+                    [
+                      _vm._v(
+                        "\n            " + _vm._s(filter.name) + "\n          "
+                      )
+                    ]
+                  )
+                })
+              ],
+              2
             )
           ]),
           _vm._v(" "),

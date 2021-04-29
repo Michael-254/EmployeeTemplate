@@ -153,6 +153,7 @@
                       <option value="Kshs">Kshs</option>
                       <option value="UGX">UGX</option>
                       <option value="Tshs">Tshs</option>
+                      <option value="Euros">Euros</option>
                     </select>
                   </div>
                 </div>

@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 class EmployeeTemplateController extends Controller
 {
 
-    
+
     public function index()
     {
         $dataA = auth()->user()->Employees()->get();
@@ -124,14 +124,20 @@ class EmployeeTemplateController extends Controller
 
     public function Admin()
     {
-        $filter = User::all();
         $data = User::when(request('filterId', '') != '', function ($query) {
             $query->where('id', request('filterId'));
         })
             ->when(request('dept', '') != '', function ($query) {
                 $query->where('department', 'like', '%' . request('dept') . '%');
-            })->paginate(3);
-        return response()->json(['data' => $data, 'filter' => $filter]);
+            })->paginate(7);
+        return response()->json(['data' => $data]);
+    }
+
+    public function SelectedDept()
+    {
+        $dept = request('dept');
+        $filter = User::where('department', 'like', '%' . request('dept') . '%')->get();
+        return response()->json(['filter' => $filter]);
     }
 
     public function Adminview($id)

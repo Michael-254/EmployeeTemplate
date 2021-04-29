@@ -124,7 +124,7 @@
                 <div class="mt-2 flex space-x-2">
                   <div class="flex-1">
                     <label class="text-blue-500 font-semibold"
-                      >Peronal Email Address</label
+                      >Personal Email Address</label
                     >
                     <input
                       v-model="form.Pemail"

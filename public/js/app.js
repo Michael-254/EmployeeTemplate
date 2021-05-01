@@ -4259,6 +4259,74 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   middleware: "auth",
   mounted: function mounted() {
@@ -4270,6 +4338,8 @@ __webpack_require__.r(__webpack_exports__);
       filters: {},
       filterId: "",
       dept: "",
+      checked: [],
+      url: "",
       user: window.user
     };
   },
@@ -4283,7 +4353,11 @@ __webpack_require__.r(__webpack_exports__);
       this.getResults();
       axios.get("/SelectedDept?dept=" + this.dept).then(function (response) {
         _this.filters = response.data.filter;
+        _this.checked = [];
       });
+    },
+    checked: function checked(value) {
+      this.url = "/Export/" + this.checked;
     }
   },
   methods: {
@@ -4294,6 +4368,16 @@ __webpack_require__.r(__webpack_exports__);
       axios.get("/Admin?page=" + page + "&filterId=" + this.filterId + "&dept=" + this.dept).then(function (response) {
         _this2.data = response.data.data;
       });
+    },
+    selectAll: function selectAll() {
+      var _this3 = this;
+
+      axios.get("/selectAll?dept=" + this.dept).then(function (response) {
+        _this3.checked = response.data;
+      });
+    },
+    RemoveSelected: function RemoveSelected() {
+      this.checked = [];
     }
   }
 });
@@ -4400,6 +4484,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _components_Admin_EmployeeEdit__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/Admin/EmployeeEdit */ "./resources/js/components/Admin/EmployeeEdit.vue");
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -53320,36 +53411,132 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "flex justify-between px-2 py-1 text-green-500" },
+            [
+              _c("div", { staticClass: "flex" }, [
+                _c("span", [
+                  _vm._v(
+                    "You have currently selected " +
+                      _vm._s(_vm.checked.length) +
+                      " records"
+                  )
+                ]),
+                _vm._v(" "),
+                _c(
+                  "p",
+                  {
+                    staticClass:
+                      "ml-2 text-blue-500 cursor-pointer hover:underline",
+                    on: { click: _vm.selectAll }
+                  },
+                  [_vm._v("\n            Select All\n          ")]
+                ),
+                _vm._v(" "),
+                _vm.checked.length > 0
+                  ? _c(
+                      "p",
+                      {
+                        staticClass:
+                          "ml-2 text-red-500 cursor-pointer hover:underline",
+                        on: { click: _vm.RemoveSelected }
+                      },
+                      [_vm._v("\n            Unselect\n          ")]
+                    )
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _vm.checked.length > 0
+                ? _c(
+                    "a",
+                    {
+                      staticClass:
+                        "items-center space-x-2 px-3 py-2 border border-green-400 rounded-md bg-green-500 text-white text-xs leading-4 font-medium uppercase tracking-wider focus:outline-none hover:bg-blue-700",
+                      attrs: { href: _vm.url }
+                    },
+                    [_vm._v("\n          Export to Excel\n        ")]
+                  )
+                : _vm._e()
+            ]
+          ),
+          _vm._v(" "),
           _c("div", { staticClass: "flex justify-center" }, [
-            _c("div", { staticClass: "bg-white shadow-md rounded my-6" }, [
+            _c("div", { staticClass: "bg-white shadow-lg rounded my-6" }, [
               _c(
                 "table",
-                { staticClass: "text-left w-full border-collapse" },
+                { staticClass: "text-left w-full" },
                 [
+                  _vm._m(0),
+                  _vm._v(" "),
                   _c(
                     "transition-group",
-                    { attrs: { name: "list", tag: "p" } },
+                    { tag: "tbody", attrs: { name: "list" } },
                     _vm._l(_vm.data.data, function(user) {
-                      return _c("tbody", { key: user.id }, [
-                        _c("tr", { staticClass: "hover:bg-grey-lighter" }, [
+                      return _c(
+                        "tr",
+                        { key: user.id, staticClass: "hover:bg-grey-lighter" },
+                        [
                           _c(
                             "td",
                             {
                               staticClass:
-                                "py-4 px-6 border-b border-grey-light"
+                                "py-4 px-6 border-b border-green-light"
                             },
                             [
-                              _c(
-                                "span",
-                                {
-                                  staticClass: "font-bold badge badge-success"
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.checked,
+                                    expression: "checked"
+                                  }
+                                ],
+                                attrs: { type: "checkbox", id: "checkbox" },
+                                domProps: {
+                                  value: user.id,
+                                  checked: Array.isArray(_vm.checked)
+                                    ? _vm._i(_vm.checked, user.id) > -1
+                                    : _vm.checked
                                 },
-                                [_vm._v(" Name: ")]
-                              ),
+                                on: {
+                                  change: function($event) {
+                                    var $$a = _vm.checked,
+                                      $$el = $event.target,
+                                      $$c = $$el.checked ? true : false
+                                    if (Array.isArray($$a)) {
+                                      var $$v = user.id,
+                                        $$i = _vm._i($$a, $$v)
+                                      if ($$el.checked) {
+                                        $$i < 0 &&
+                                          (_vm.checked = $$a.concat([$$v]))
+                                      } else {
+                                        $$i > -1 &&
+                                          (_vm.checked = $$a
+                                            .slice(0, $$i)
+                                            .concat($$a.slice($$i + 1)))
+                                      }
+                                    } else {
+                                      _vm.checked = $$c
+                                    }
+                                  }
+                                }
+                              })
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            {
+                              staticClass:
+                                "py-4 px-6 border-b border-green-light"
+                            },
+                            [
                               _vm._v(
-                                "\n                    " +
+                                "\n                  " +
                                   _vm._s(user.name) +
-                                  "\n                  "
+                                  "\n                "
                               )
                             ]
                           ),
@@ -53358,25 +53545,13 @@ var render = function() {
                             "td",
                             {
                               staticClass:
-                                "py-4 px-6 border-b border-grey-light"
+                                "py-4 px-6 border-b border-green-light"
                             },
                             [
-                              _c(
-                                "span",
-                                {
-                                  staticClass:
-                                    "font-bold badge badge-danger text-white"
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                      Dept:\n                    "
-                                  )
-                                ]
-                              ),
                               _vm._v(
-                                "\n                    " +
+                                "\n                  " +
                                   _vm._s(user.department) +
-                                  "\n                  "
+                                  "\n                "
                               )
                             ]
                           ),
@@ -53385,20 +53560,13 @@ var render = function() {
                             "td",
                             {
                               staticClass:
-                                "py-4 px-6 border-b border-grey-light"
+                                "py-4 px-6 border-b border-green-light"
                             },
                             [
-                              _c(
-                                "span",
-                                {
-                                  staticClass: "font-bold badge badge-primary"
-                                },
-                                [_vm._v(" Site: ")]
-                              ),
                               _vm._v(
-                                "\n                    " +
-                                  _vm._s(user.site) +
-                                  "\n                  "
+                                "\n                  " +
+                                  _vm._s(user.email) +
+                                  "\n                "
                               )
                             ]
                           ),
@@ -53407,7 +53575,22 @@ var render = function() {
                             "td",
                             {
                               staticClass:
-                                "py-4 px-6 border-b border-grey-light"
+                                "py-4 px-6 border-b border-green-light"
+                            },
+                            [
+                              _vm._v(
+                                "\n                  " +
+                                  _vm._s(user.site) +
+                                  "\n                "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            {
+                              staticClass:
+                                "py-4 px-6 border-b border-green-light"
                             },
                             [
                               _c(
@@ -53434,8 +53617,8 @@ var render = function() {
                               )
                             ]
                           )
-                        ])
-                      ])
+                        ]
+                      )
                     }),
                     0
                   )
@@ -53461,7 +53644,68 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c(
+          "th",
+          {
+            staticClass: "py-4 px-6 text-xl border-b text-green-500 font-bold"
+          },
+          [
+            _c("input", {
+              attrs: { type: "checkbox", id: "checkbox", disabled: "" }
+            })
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          {
+            staticClass: "py-4 px-6 text-xl border-b text-green-500 font-bold"
+          },
+          [_vm._v("\n                  Name\n                ")]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          {
+            staticClass: "py-4 px-6 border-b text-xl text-green-500 font-bold"
+          },
+          [_vm._v("\n                  Department\n                ")]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          {
+            staticClass: "py-4 px-6 border-b text-xl text-green-500 font-bold"
+          },
+          [_vm._v("\n                  Email\n                ")]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          {
+            staticClass: "py-4 px-6 border-b text-xl text-green-500 font-bold"
+          },
+          [_vm._v("\n                  Site\n                ")]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          {
+            staticClass: "py-4 px-6 border-b text-xl text-green-500 font-bold"
+          },
+          [_vm._v("\n                  View\n                ")]
+        )
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -53593,7 +53837,49 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "min-h-screen font-mono" }, [
     _vm.data.employees != ""
-      ? _c("div", [_c("app-employeeedit", { attrs: { forms: _vm.data } })], 1)
+      ? _c(
+          "div",
+          [
+            _c("router-link", { attrs: { to: "/Employees" } }, [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "flex items-center mb-1 cursor-pointer text-blue-600 hover:underline lg:px-64"
+                },
+                [
+                  _c(
+                    "svg",
+                    {
+                      staticClass: "h-6 w-6",
+                      attrs: {
+                        xmlns: "http://www.w3.org/2000/svg",
+                        fill: "none",
+                        viewBox: "0 0 24 24",
+                        stroke: "currentColor"
+                      }
+                    },
+                    [
+                      _c("path", {
+                        attrs: {
+                          "stroke-linecap": "round",
+                          "stroke-linejoin": "round",
+                          "stroke-width": "2",
+                          d:
+                            "M12.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0019 16V8a1 1 0 00-1.6-.8l-5.333 4zM4.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0011 16V8a1 1 0 00-1.6-.8l-5.334 4z"
+                        }
+                      })
+                    ]
+                  ),
+                  _vm._v("Go Back\n        ")
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("app-employeeedit", { attrs: { forms: _vm.data } })
+          ],
+          1
+        )
       : _c("div", [_vm._m(0)])
   ])
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\EmployeeExport;
 use App\Models\EmergencyC;
 use App\Models\EmployeeTemplate;
 use App\Models\Image;
@@ -144,5 +145,16 @@ class EmployeeTemplateController extends Controller
     {
         $user = User::findOrFail($id)->load('Employees', 'jobInfos', 'emergency', 'Images');
         return $user;
+    }
+
+    public function selectall()
+    {
+        return User::where('department', 'like', '%' . request('dept') . '%')->pluck('id');
+    }
+
+    public function export($employees)
+    {
+        $employeeExport = explode(',',$employees);
+        return (new EmployeeExport($employeeExport))->download('Employees.xlsx');
     }
 }

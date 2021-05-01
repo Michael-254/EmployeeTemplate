@@ -40,6 +40,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/Admin', [App\Http\Controllers\EmployeeTemplateController::class, 'Admin'])->name('Admin');
         Route::get('/SelectedDept', [App\Http\Controllers\EmployeeTemplateController::class, 'SelectedDept'])->name('select.dept');
         Route::get('/EmployeeView/{id}', [App\Http\Controllers\EmployeeTemplateController::class, 'Adminview'])->name('Admin.view');
+        Route::get('/selectAll', [App\Http\Controllers\EmployeeTemplateController::class, 'selectall'])->name('select.all');
+        Route::get('/Export/{employees}', [App\Http\Controllers\EmployeeTemplateController::class, 'export'])->name('employees.export');
     });
 });
 

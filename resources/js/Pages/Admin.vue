@@ -37,39 +37,107 @@
             </option>
           </select>
         </div>
+        <div class="flex justify-between px-2 py-1 text-green-500">
+          <div class="flex">
+            <span
+              >You have currently selected {{ checked.length }} records</span
+            >
+            <p
+              class="ml-2 text-blue-500 cursor-pointer hover:underline"
+              @click="selectAll"
+            >
+              Select All
+            </p>
+            <p
+              v-if="checked.length > 0"
+              class="ml-2 text-red-500 cursor-pointer hover:underline"
+              @click="RemoveSelected"
+            >
+              Unselect
+            </p>
+          </div>
+          <a
+            v-if="checked.length > 0"
+            :href="url"
+            class="items-center space-x-2 px-3 py-2 border border-green-400 rounded-md bg-green-500 text-white text-xs leading-4 font-medium uppercase tracking-wider focus:outline-none hover:bg-blue-700"
+          >
+            Export to Excel
+          </a>
+        </div>
+
         <div class="flex justify-center">
-          <div class="bg-white shadow-md rounded my-6">
-            <table class="text-left w-full border-collapse">
-              <transition-group name="list" tag="p">
-                <tbody v-for="user in data.data" :key="user.id">
-                  <tr class="hover:bg-grey-lighter">
-                    <td class="py-4 px-6 border-b border-grey-light">
-                      <span class="font-bold badge badge-success"> Name: </span>
-                      {{ user.name }}
-                    </td>
-                    <td class="py-4 px-6 border-b border-grey-light">
-                      <span class="font-bold badge badge-danger text-white">
-                        Dept:
-                      </span>
-                      {{ user.department }}
-                    </td>
-                    <td class="py-4 px-6 border-b border-grey-light">
-                      <span class="font-bold badge badge-primary"> Site: </span>
-                      {{ user.site }}
-                    </td>
-                    <td class="py-4 px-6 border-b border-grey-light">
-                      <span
-                        class="badge badge-warning font-bold cursor-pointer"
+          <div class="bg-white shadow-lg rounded my-6">
+            <table class="text-left w-full">
+              <thead>
+                <tr>
+                  <th
+                    class="py-4 px-6 text-xl border-b text-green-500 font-bold"
+                  >
+                    <input type="checkbox" id="checkbox" disabled />
+                  </th>
+                  <th
+                    class="py-4 px-6 text-xl border-b text-green-500 font-bold"
+                  >
+                    Name
+                  </th>
+                  <th
+                    class="py-4 px-6 border-b text-xl text-green-500 font-bold"
+                  >
+                    Department
+                  </th>
+                  <th
+                    class="py-4 px-6 border-b text-xl text-green-500 font-bold"
+                  >
+                    Email
+                  </th>
+                  <th
+                    class="py-4 px-6 border-b text-xl text-green-500 font-bold"
+                  >
+                    Site
+                  </th>
+                  <th
+                    class="py-4 px-6 border-b text-xl text-green-500 font-bold"
+                  >
+                    View
+                  </th>
+                </tr>
+              </thead>
+              <tbody name="list" is="transition-group">
+                <tr
+                  class="hover:bg-grey-lighter"
+                  v-for="user in data.data"
+                  :key="user.id"
+                >
+                  <td class="py-4 px-6 border-b border-green-light">
+                    <input
+                      type="checkbox"
+                      id="checkbox"
+                      :value="user.id"
+                      v-model="checked"
+                    />
+                  </td>
+                  <td class="py-4 px-6 border-b border-green-light">
+                    {{ user.name }}
+                  </td>
+                  <td class="py-4 px-6 border-b border-green-light">
+                    {{ user.department }}
+                  </td>
+                  <td class="py-4 px-6 border-b border-green-light">
+                    {{ user.email }}
+                  </td>
+                  <td class="py-4 px-6 border-b border-green-light">
+                    {{ user.site }}
+                  </td>
+                  <td class="py-4 px-6 border-b border-green-light">
+                    <span class="badge badge-warning font-bold cursor-pointer">
+                      <router-link
+                        :to="{ name: 'admin.view', params: { id: user.id } }"
+                        >View Details</router-link
                       >
-                        <router-link
-                          :to="{ name: 'admin.view', params: { id: user.id } }"
-                          >View Details</router-link
-                        >
-                      </span>
-                    </td>
-                  </tr>
-                </tbody>
-              </transition-group>
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
             </table>
             <div class="mt-3">
               <pagination
@@ -97,6 +165,8 @@ export default {
       filters: {},
       filterId: "",
       dept: "",
+      checked: [],
+      url: "",
       user: window.user,
     };
   },
@@ -106,11 +176,13 @@ export default {
     },
     dept(value) {
       this.getResults();
-       axios
-        .get("/SelectedDept?dept=" + this.dept)
-        .then((response) => {
-          this.filters = response.data.filter;
-        });
+      axios.get("/SelectedDept?dept=" + this.dept).then((response) => {
+        this.filters = response.data.filter;
+        this.checked = [];
+      });
+    },
+    checked(value) {
+      this.url = "/Export/" + this.checked;
     },
   },
   methods: {
@@ -127,6 +199,14 @@ export default {
         .then((response) => {
           this.data = response.data.data;
         });
+    },
+    selectAll() {
+      axios.get("/selectAll?dept=" + this.dept).then((response) => {
+        this.checked = response.data;
+      });
+    },
+    RemoveSelected() {
+      this.checked = [];
     },
   },
 };

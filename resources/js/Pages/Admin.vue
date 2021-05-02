@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen font-mono">
+  <div class="min-h-screen">
     <section class="max-w-5xl mx-auto">
       <div class="border rounded-md shadow-md mt-4 bg-white px-3">
         <h3 class="text-center text-xl text-blue-700 font-bold font-sans m-2">

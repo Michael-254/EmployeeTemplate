@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen font-mono" >
+  <div class="min-h-screen" >
      <bridge-notify />
      <div>
        <h3 class="text-blue-500 text-center font-bold text-xl">Employee Information Sheet</h3>

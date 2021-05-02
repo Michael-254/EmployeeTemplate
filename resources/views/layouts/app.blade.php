@@ -192,7 +192,7 @@
     </style>
 </head>
 
-<body class="font-mono">
+<body>
     <div id="app">
         <nav class="navbar navbar-expand-md bg-gradient-to-r from-blue-600 via-green-300 to-green-600 shadow-sm">
             <div class="container">

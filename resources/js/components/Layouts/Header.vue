@@ -1,5 +1,5 @@
 <template>
-  <div class="font-mono">
+  <div>
     <nav
       class="navbar navbar-expand-md bg-gradient-to-r from-blue-600 via-green-300 to-green-600 shadow-sm mb-4"
     >

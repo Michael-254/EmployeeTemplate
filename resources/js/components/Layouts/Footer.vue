@@ -1,5 +1,5 @@
 <template>
-  <div class="font-mono">
+  <div>
     <footer
       class="bg-gradient-to-r from-green-600 via-green-300 to-blue-600 p-3 text-white text-center px-4 py-1"
     >

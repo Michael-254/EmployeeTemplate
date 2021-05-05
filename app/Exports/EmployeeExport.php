@@ -3,11 +3,12 @@
 namespace App\Exports;
 
 use App\Models\User;
-use Maatwebsite\Excel\Concerns\FromQuery;
-use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\Exportable;
+use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\WithMapping;
 
-class EmployeeExport implements FromQuery
+class EmployeeExport implements  FromCollection,WithHeadings,WithMapping
 {
     use Exportable;
 
@@ -18,8 +19,22 @@ class EmployeeExport implements FromQuery
         $this->employees = $employees;
     }
 
-    public function query()
+    public function collection()
     {
-        return User::query()->whereKey($this->employees);
+        return User::whereKey($this->employees)->get();
+    }
+
+    public function map($user) : array {
+        return [
+            $user->name,
+            $user->email,
+            $user->department,
+            $user->site,
+        ] ;
+    }
+
+    public function headings():array
+    {
+        return ["Name", "Email", "Department", "Site"];
     }
 }

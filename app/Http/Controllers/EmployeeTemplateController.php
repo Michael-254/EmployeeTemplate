@@ -130,7 +130,11 @@ class EmployeeTemplateController extends Controller
         })
             ->when(request('dept', '') != '', function ($query) {
                 $query->where('department', 'like', '%' . request('dept') . '%');
-            })->paginate(7);
+            })
+            ->when(request('site', '') != '', function ($query) {
+                $query->where('site', 'like', '%' . request('site') . '%');
+            })
+            ->paginate(7);
         return response()->json(['data' => $data]);
     }
 
@@ -149,12 +153,17 @@ class EmployeeTemplateController extends Controller
 
     public function selectall()
     {
-        return User::where('department', 'like', '%' . request('dept') . '%')->pluck('id');
+        $dept = request('dept');
+        return User::where('department', 'like', '%' . $dept  . '%')
+            ->when(request('site', '') != '', function ($query) {
+                $query->where('site', 'like', '%' . request('site') . '%');
+            })
+            ->pluck('id');
     }
 
     public function export($employees)
     {
-        $employeeExport = explode(',',$employees);
-        return (new EmployeeExport($employeeExport))->download('Employees.xlsx');
+        $employees = explode(',', $employees);
+        return (new EmployeeExport($employees))->download('Employees.xlsx');
     }
 }

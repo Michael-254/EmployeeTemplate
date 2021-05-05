@@ -4360,6 +4360,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   middleware: "auth",
   mounted: function mounted() {
@@ -4371,6 +4389,7 @@ __webpack_require__.r(__webpack_exports__);
       filters: {},
       filterId: "",
       dept: "",
+      site: "",
       checked: [],
       url: "",
       user: window.user
@@ -4379,6 +4398,10 @@ __webpack_require__.r(__webpack_exports__);
   watch: {
     filterId: function filterId(value) {
       this.getResults();
+    },
+    site: function site(value) {
+      this.getResults();
+      this.checked = [];
     },
     dept: function dept(value) {
       var _this = this;
@@ -4398,19 +4421,24 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
-      axios.get("/Admin?page=" + page + "&filterId=" + this.filterId + "&dept=" + this.dept).then(function (response) {
+      axios.get("/Admin?page=" + page + "&filterId=" + this.filterId + "&dept=" + this.dept + "&site=" + this.site).then(function (response) {
         _this2.data = response.data.data;
       });
     },
     selectAll: function selectAll() {
       var _this3 = this;
 
-      axios.get("/selectAll?dept=" + this.dept).then(function (response) {
+      axios.get("/selectAll?dept=" + this.dept + "&site=" + this.site).then(function (response) {
         _this3.checked = response.data;
       });
     },
     RemoveSelected: function RemoveSelected() {
       this.checked = [];
+    },
+    reset: function reset() {
+      this.filterId = "";
+      this.dept = "";
+      this.site = "";
     }
   }
 });
@@ -62835,6 +62863,64 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
+                    value: _vm.site,
+                    expression: "site"
+                  }
+                ],
+                staticClass:
+                  "w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600",
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.site = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  }
+                }
+              },
+              [
+                _c("option", { attrs: { value: "" } }, [
+                  _vm._v("-- Filter by Site --")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Head Office" } }, [
+                  _vm._v("Head Office")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Kiambere" } }, [
+                  _vm._v("Kiambere")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Dokolo" } }, [
+                  _vm._v("Dokolo")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Nyongoro" } }, [
+                  _vm._v("Nyongoro")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "7 Forks" } }, [
+                  _vm._v("7 Forks")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Sosoma" } }, [_vm._v("Sosoma")])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
                     value: _vm.dept,
                     expression: "dept"
                   }
@@ -62948,6 +63034,21 @@ var render = function() {
                 })
               ],
               2
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass:
+                  "items-center space-x-2 px-3 py-2 border border-green-400 rounded-md bg-red-500 text-white text-xs leading-4 font-medium uppercase tracking-wider focus:outline-none hover:bg-red-900",
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.reset($event)
+                  }
+                }
+              },
+              [_vm._v("\n          Reset\n        ")]
             )
           ]),
           _vm._v(" "),

@@ -8,6 +8,18 @@
 
         <div class="flex float-center mb-2 space-x-2">
           <select
+            v-model="site"
+            class="w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600"
+          >
+            <option value="">-- Filter by Site --</option>
+            <option value="Head Office">Head Office</option>
+            <option value="Kiambere">Kiambere</option>
+            <option value="Dokolo">Dokolo</option>
+            <option value="Nyongoro">Nyongoro</option>
+            <option value="7 Forks">7 Forks</option>
+            <option value="Sosoma">Sosoma</option>
+          </select>
+          <select
             v-model="dept"
             class="w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600"
           >
@@ -36,6 +48,12 @@
               {{ filter.name }}
             </option>
           </select>
+          <button
+            @click.prevent="reset"
+            class="items-center space-x-2 px-3 py-2 border border-green-400 rounded-md bg-red-500 text-white text-xs leading-4 font-medium uppercase tracking-wider focus:outline-none hover:bg-red-900"
+          >
+            Reset
+          </button>
         </div>
         <div class="flex justify-between px-2 py-1 text-green-500">
           <div class="flex">
@@ -165,6 +183,7 @@ export default {
       filters: {},
       filterId: "",
       dept: "",
+      site: "",
       checked: [],
       url: "",
       user: window.user,
@@ -173,6 +192,10 @@ export default {
   watch: {
     filterId(value) {
       this.getResults();
+    },
+    site(value) {
+      this.getResults();
+      this.checked = [];
     },
     dept(value) {
       this.getResults();
@@ -194,19 +217,28 @@ export default {
             "&filterId=" +
             this.filterId +
             "&dept=" +
-            this.dept
+            this.dept +
+            "&site=" +
+            this.site
         )
         .then((response) => {
           this.data = response.data.data;
         });
     },
     selectAll() {
-      axios.get("/selectAll?dept=" + this.dept).then((response) => {
-        this.checked = response.data;
-      });
+      axios
+        .get("/selectAll?dept=" + this.dept + "&site=" + this.site)
+        .then((response) => {
+          this.checked = response.data;
+        });
     },
     RemoveSelected() {
       this.checked = [];
+    },
+    reset() {
+      this.filterId = "";
+      this.dept = "";
+      this.site = "";
     },
   },
 };

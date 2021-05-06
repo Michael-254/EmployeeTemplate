@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen">
+  <div class="min-h-screen font-serif">
     <section class="max-w-5xl mx-auto">
       <div class="border rounded-md shadow-md mt-4 bg-white px-3">
         <h3 class="text-center text-xl text-blue-700 font-bold font-sans m-2">
@@ -147,10 +147,10 @@
                     {{ user.site }}
                   </td>
                   <td class="py-4 px-6 border-b border-green-light">
-                    <span class="badge badge-warning font-bold cursor-pointer">
+                    <span class="font-bold cursor-pointer text-green-600">
                       <router-link
                         :to="{ name: 'admin.view', params: { id: user.id } }"
-                        >View Details</router-link
+                        ><i class="fas fa-eye"></i></router-link
                       >
                     </span>
                   </td>

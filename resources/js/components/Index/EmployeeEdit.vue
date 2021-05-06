@@ -1,7 +1,7 @@
 <template>
   <div>
     <section
-      class="max-w-3xl mx-auto mt-3 font-mono"
+      class="max-w-3xl mx-auto mt-3 font-serif"
       v-for="form in form"
       :key="form.id"
     >

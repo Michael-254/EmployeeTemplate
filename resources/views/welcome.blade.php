@@ -17,6 +17,9 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+    <link href="{{asset('fontawesome/css/all.css')}}" rel="stylesheet">
+    <script defer src="{{asset('fontawesome/js/all.js')}}"></script>
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script>
@@ -25,7 +28,7 @@
     </script>
 </head>
 
-<body class="antialiased bg-gray-100 text-gray-800">
+<body class="font-sans antialiased bg-gray-100">
     <div id="app">
        @if(auth()->check())
         <main-component :user="{{auth()->user()}}" />

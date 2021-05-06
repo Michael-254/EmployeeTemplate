@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section class="max-w-3xl mx-auto mt-3 font-mono">
+    <section class="max-w-3xl mx-auto mt-3 font-serif">
       <form @submit.prevent="submit" enctype="multipart/form-data">
         <div class="bg-white lg:flex lg:shadow-lg lg:rounded-lg">
           <div class="p-3">

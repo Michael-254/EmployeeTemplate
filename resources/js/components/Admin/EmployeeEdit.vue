@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="font-serif">
     <div class="flex float-right lg:px-2">
       <a
         @click.prevent="getPdf()"

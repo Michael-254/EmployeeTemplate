@@ -196,7 +196,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md bg-gradient-to-r from-blue-600 via-green-300 to-green-600 shadow-sm">
             <div class="container">
-                <img src="https://maintainance.bgfticketing.com/public/storage/logo.png" class="h-8 shadow rounded-full" alt="">
+                <img src="{{asset('/storage/logo.png')}}" class="h-8 shadow rounded-full" alt="">
                 <span class="text-xl text-white  ml-2">E-Portal</span>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">

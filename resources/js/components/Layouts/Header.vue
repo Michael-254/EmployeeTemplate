@@ -8,7 +8,7 @@
         <div class="flex justify-between h-16">
           <div class="flex items-center">
             <img
-              src="https://maintainance.bgfticketing.com/public/storage/logo.png"
+              :src="image"
               class="h-12 shadow"
               alt=""
             />
@@ -21,7 +21,6 @@
 
           <!-- Settings Dropdown -->
           <div class="flex items-center">
-            <x-dropdown align="right" width="48">
               <slot name="trigger">
                 <div
                   class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out"
@@ -31,7 +30,6 @@
                   </div>
                 </div>
               </slot>
-            </x-dropdown>
             <a href="#" @click.prevent="logout" class="mt-0.5">
               <i
                 class="fas fa-sign-out-alt ml-1 text-white hover:text-blue-600"
@@ -67,6 +65,7 @@ export default {
   data() {
     return {
       user: window.user,
+       image: '/storage/logo.png', 
     };
   },
   methods: {

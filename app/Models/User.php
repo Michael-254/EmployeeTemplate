@@ -44,15 +44,15 @@ class User extends Authenticatable
     ];
 
     public function Employees(){
-        return $this->hasOne(EmployeeTemplate::class);
+        return $this->hasOne(EmployeeTemplate::class)->withDefault();
     }
 
     public function jobInfos(){
-        return $this->hasOne(JobInfo::class);
+        return $this->hasOne(JobInfo::class)->withDefault();
     }
 
     public function emergency(){
-        return $this->hasOne(EmergencyC::class);
+        return $this->hasOne(EmergencyC::class)->withDefault();
     }
 
     public function images(){

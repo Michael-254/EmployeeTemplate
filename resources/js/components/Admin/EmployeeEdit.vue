@@ -17,7 +17,7 @@
                 <div class="flex justify-center mb-4">
                   <h3 class="mt-4 font-bold text-xl">
                     {{ forms.salutation }}:
-                    {{ forms.Fname }}
+                    {{ forms.username }}
                   </h3>
                 </div>
 

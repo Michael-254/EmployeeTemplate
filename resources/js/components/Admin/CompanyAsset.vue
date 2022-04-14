@@ -24,8 +24,9 @@
                       <label class="text-blue-500 font-semibold"
                         >Asset Name</label
                       >
-                      <select
+                      <input
                         v-model="form.AssetName"
+                        placeholder="Type Asset Name"
                         class="
                           w-full
                           py-2
@@ -36,10 +37,7 @@
                           focus:outline-none focus:shadow-outline
                           text-gray-600
                         "
-                      >
-                        <option value="Laptop">Laptop</option>
-                        <option value="Monitor">Monitor</option>
-                      </select>
+                      />
                       <span
                         class="text-sm text-red-600"
                         v-if="errors.AssetName"

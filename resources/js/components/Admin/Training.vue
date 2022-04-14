@@ -35,7 +35,7 @@
                         focus:outline-none focus:shadow-outline
                         text-gray-600
                       "
-                      placeholder="Type Document name"
+                      placeholder="Type training name"
                     />
                     <p class="text-sm text-red-600" v-if="errors.trainingName">{{
                       errors.trainingName[0]

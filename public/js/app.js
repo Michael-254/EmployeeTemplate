@@ -2296,8 +2296,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -80011,60 +80009,36 @@ var render = function () {
                                           [_vm._v("Asset Name")]
                                         ),
                                         _vm._v(" "),
-                                        _c(
-                                          "select",
-                                          {
-                                            directives: [
-                                              {
-                                                name: "model",
-                                                rawName: "v-model",
-                                                value: _vm.form.AssetName,
-                                                expression: "form.AssetName",
-                                              },
-                                            ],
-                                            staticClass:
-                                              "\n                        w-full\n                        py-2\n                        px-2\n                        bg-gray-200\n                        rounded-lg\n                        shadow-sm\n                        focus:outline-none focus:shadow-outline\n                        text-gray-600\n                      ",
-                                            on: {
-                                              change: function ($event) {
-                                                var $$selectedVal =
-                                                  Array.prototype.filter
-                                                    .call(
-                                                      $event.target.options,
-                                                      function (o) {
-                                                        return o.selected
-                                                      }
-                                                    )
-                                                    .map(function (o) {
-                                                      var val =
-                                                        "_value" in o
-                                                          ? o._value
-                                                          : o.value
-                                                      return val
-                                                    })
-                                                _vm.$set(
-                                                  _vm.form,
-                                                  "AssetName",
-                                                  $event.target.multiple
-                                                    ? $$selectedVal
-                                                    : $$selectedVal[0]
-                                                )
-                                              },
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.form.AssetName,
+                                              expression: "form.AssetName",
+                                            },
+                                          ],
+                                          staticClass:
+                                            "\n                        w-full\n                        py-2\n                        px-2\n                        bg-gray-200\n                        rounded-lg\n                        shadow-sm\n                        focus:outline-none focus:shadow-outline\n                        text-gray-600\n                      ",
+                                          attrs: {
+                                            placeholder: "Type Asset Name",
+                                          },
+                                          domProps: {
+                                            value: _vm.form.AssetName,
+                                          },
+                                          on: {
+                                            input: function ($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.form,
+                                                "AssetName",
+                                                $event.target.value
+                                              )
                                             },
                                           },
-                                          [
-                                            _c(
-                                              "option",
-                                              { attrs: { value: "Laptop" } },
-                                              [_vm._v("Laptop")]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "option",
-                                              { attrs: { value: "Monitor" } },
-                                              [_vm._v("Monitor")]
-                                            ),
-                                          ]
-                                        ),
+                                        }),
                                         _vm._v(" "),
                                         _vm.errors.AssetName
                                           ? _c(
@@ -84456,7 +84430,7 @@ var render = function () {
                                           staticClass:
                                             "\n                      w-full\n                      py-2\n                      px-2\n                      bg-gray-200\n                      rounded-lg\n                      shadow-sm\n                      focus:outline-none focus:shadow-outline\n                      text-gray-600\n                    ",
                                           attrs: {
-                                            placeholder: "Type Document name",
+                                            placeholder: "Type training name",
                                           },
                                           domProps: { value: _vm.trainingName },
                                           on: {

@@ -11,6 +11,7 @@ Vue.use(require("bridge-vue-notification"));
 Vue.component('pagination', require('laravel-vue-pagination'));
 
 import router from "./router";
+export const bus = new Vue();
 
 import htmlToPdf from './htmlToPdf.js'
 

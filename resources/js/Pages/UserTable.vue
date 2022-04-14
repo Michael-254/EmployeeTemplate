@@ -1,5 +1,6 @@
 <template>
   <div class="min-h-screen font-serif">
+    <bridge-notify />
     <section class="max-w-5xl mx-auto">
       <div class="border rounded-md shadow-md mt-4 bg-white px-3">
         <h3 class="text-center text-xl text-blue-700 font-bold font-sans m-2">
@@ -83,6 +84,11 @@
           </a>
         </div>
 
+        <div v-if="Success" class="bg-blue-100 border-blue-500 text-blue-700 px-4 py-3" role="alert">
+          <p class="font-bold">Success</p>
+          <p class="text-sm">User created Successfully.</p>
+        </div>
+
         <div class="flex justify-center">
           <div class="bg-white shadow-lg rounded my-6">
             <table class="text-left w-full">
@@ -149,7 +155,7 @@
                   <td class="py-4 px-6 border-b border-green-light">
                     <span class="font-bold cursor-pointer text-green-600">
                       <router-link
-                        :to="{ name: 'admin.view', params: { id: user.id } }"
+                        :to="{ name: 'user.details', params: { id: user.id } }"
                         ><i class="fas fa-eye"></i></router-link
                       >
                     </span>
@@ -187,6 +193,7 @@ export default {
       checked: [],
       url: "",
       user: window.user,
+      Success: false,
     };
   },
   watch: {

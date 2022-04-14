@@ -51,7 +51,7 @@ export default {
         .then((response) => {
           this.data = response.data.data;
           this.loading = false;
-          if (response.data.employees === null) {
+          if (response.data.data.salutation === null) {
             this.$router.push("/Employees");
             alert("No data available for this Employee");
           }

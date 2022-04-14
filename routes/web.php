@@ -23,21 +23,32 @@ Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/index', [App\Http\Controllers\EmployeeTemplateController::class, 'index'])->name('index');
-
-    Route::post('/store', [App\Http\Controllers\EmployeeTemplateController::class, 'store'])->name('store');
-    Route::post('/storeB', [App\Http\Controllers\EmployeeTemplateController::class, 'storeB'])->name('storeB');
     Route::post('/storeC', [App\Http\Controllers\EmployeeTemplateController::class, 'storeC'])->name('storeC');
     Route::put('/update/{id}', [App\Http\Controllers\EmployeeTemplateController::class, 'update'])->name('update');
     Route::put('/updateB/{id}', [App\Http\Controllers\EmployeeTemplateController::class, 'updateB'])->name('updateB');
     Route::put('/updateC/{id}', [App\Http\Controllers\EmployeeTemplateController::class, 'updateC'])->name('updateC');
     Route::post('/upload', [App\Http\Controllers\EmployeeTemplateController::class, 'upload'])->name('upload');
-    Route::delete('/remove/{id}', [App\Http\Controllers\EmployeeTemplateController::class, 'destroy'])->name('remove');
     //file
     Route::get('/View/{id}', [App\Http\Controllers\EmployeeTemplateController::class, 'file'])->name('report.file');
     Route::get('AdminView/View/{id}', [App\Http\Controllers\EmployeeTemplateController::class, 'file'])->name('report.file2');
 
     Route::middleware(['Administrator'])->group(function () {
-        Route::get('/Admin', [App\Http\Controllers\EmployeeTemplateController::class, 'Admin'])->name('Admin');
+        Route::get('/Admin', [App\Http\Controllers\AdminController::class, 'index'])->name('Admin');
+        Route::get('/Create-user', [App\Http\Controllers\AdminController::class, 'create'])->name('create.user');
+        Route::post('/Create-user', [App\Http\Controllers\AdminController::class, 'storeUser'])->name('store.user');
+        Route::get('/Employee-details/{id}', [App\Http\Controllers\AdminController::class, 'UserDetails'])->name('user.detail');
+        Route::post('/Personal-details/{id}', [App\Http\Controllers\AdminController::class, 'personalDetails']);
+        Route::post('/Job-details/{id}', [App\Http\Controllers\AdminController::class, 'JobDetails']);
+        Route::post('/Emergency-contact/{id}', [App\Http\Controllers\AdminController::class, 'EmergencyContact']);
+        Route::post('/upload-documents/{id}', [App\Http\Controllers\AdminController::class, 'uploadDocs']);
+        Route::delete('/removeDoc/{id}', [App\Http\Controllers\AdminController::class, 'destroyDoc']);
+        Route::post('/company-asset/{id}', [App\Http\Controllers\AdminController::class, 'CompanyAsset']);
+        Route::delete('/remove-asset/{id}', [App\Http\Controllers\AdminController::class, 'destroyAsset']);
+        Route::post('/training-record/{id}', [App\Http\Controllers\AdminController::class, 'TrainingRecord']);
+        Route::delete('/remove-training/{id}', [App\Http\Controllers\AdminController::class, 'destroyTraining']);
+
+
+
         Route::get('/SelectedDept', [App\Http\Controllers\EmployeeTemplateController::class, 'SelectedDept'])->name('select.dept');
         Route::get('/EmployeeView/{id}', [App\Http\Controllers\EmployeeTemplateController::class, 'Adminview'])->name('Admin.view');
         Route::get('/selectAll', [App\Http\Controllers\EmployeeTemplateController::class, 'selectall'])->name('select.all');

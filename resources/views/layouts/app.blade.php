@@ -19,6 +19,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com/"></script>
     <style>
         body {
             color: #000;

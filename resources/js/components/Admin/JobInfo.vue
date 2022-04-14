@@ -1,11 +1,7 @@
 <template>
   <div>
-    <section
-      class="max-w-3xl mx-auto mt-3 font-serif"
-      v-for="form in form"
-      :key="form.id"
-    >
-      <form @submit.prevent="update(form)">
+    <section class="max-w-3xl mx-auto mt-3 font-serif">
+      <form @submit.prevent="submit(form)">
         <div class="bg-white lg:flex lg:shadow-lg lg:rounded-lg">
           <div class="p-3">
             <span
@@ -27,8 +23,21 @@
                     <input
                       v-model="form.title"
                       type="text"
-                      class="w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600"
+                      :disabled="can == false"
+                      class="
+                        w-full
+                        py-2
+                        px-2
+                        bg-gray-200
+                        rounded-lg
+                        shadow-sm
+                        focus:outline-none focus:shadow-outline
+                        text-gray-600
+                      "
                     />
+                    <span class="text-sm text-red-600" v-if="errors.title">{{
+                      errors.title[0]
+                    }}</span>
                   </div>
                   <div class="flex-1">
                     <label class="text-blue-500 font-semibold"
@@ -37,7 +46,17 @@
                     <input
                       v-model="form.EmployeeId"
                       type="text"
-                      class="w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600"
+                      :disabled="can == false"
+                      class="
+                        w-full
+                        py-2
+                        px-2
+                        bg-gray-200
+                        rounded-lg
+                        shadow-sm
+                        focus:outline-none focus:shadow-outline
+                        text-gray-600
+                      "
                     />
                   </div>
                   <div class="flex-1">
@@ -47,8 +66,23 @@
                     <input
                       v-model="form.supervisor"
                       type="text"
-                      class="w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600"
+                      :disabled="can == false"
+                      class="
+                        w-full
+                        py-2
+                        px-2
+                        bg-gray-200
+                        rounded-lg
+                        shadow-sm
+                        focus:outline-none focus:shadow-outline
+                        text-gray-600
+                      "
                     />
+                    <span
+                      class="text-sm text-red-600"
+                      v-if="errors.supervisor"
+                      >{{ errors.supervisor[0] }}</span
+                    >
                   </div>
                 </div>
 
@@ -60,7 +94,17 @@
                     <input
                       v-model="form.department"
                       type="text"
-                      class="w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600"
+                      :disabled="can == false"
+                      class="
+                        w-full
+                        py-2
+                        px-2
+                        bg-gray-200
+                        rounded-lg
+                        shadow-sm
+                        focus:outline-none focus:shadow-outline
+                        text-gray-600
+                      "
                     />
                     <span
                       class="text-sm text-red-600"
@@ -75,7 +119,17 @@
                     <input
                       v-model="form.Wlocation"
                       type="text"
-                      class="w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600"
+                      :disabled="can == false"
+                      class="
+                        w-full
+                        py-2
+                        px-2
+                        bg-gray-200
+                        rounded-lg
+                        shadow-sm
+                        focus:outline-none focus:shadow-outline
+                        text-gray-600
+                      "
                     />
                   </div>
                 </div>
@@ -88,7 +142,17 @@
                     <input
                       v-model="form.Wemail"
                       type="email"
-                      class="w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600"
+                      :disabled="can == false"
+                      class="
+                        w-full
+                        py-2
+                        px-2
+                        bg-gray-200
+                        rounded-lg
+                        shadow-sm
+                        focus:outline-none focus:shadow-outline
+                        text-gray-600
+                      "
                     />
                   </div>
                 </div>
@@ -101,7 +165,17 @@
                     <input
                       v-model="form.Wphone"
                       type="text"
-                      class="w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600"
+                      :disabled="can == false"
+                      class="
+                        w-full
+                        py-2
+                        px-2
+                        bg-gray-200
+                        rounded-lg
+                        shadow-sm
+                        focus:outline-none focus:shadow-outline
+                        text-gray-600
+                      "
                     />
                   </div>
                   <div class="flex-1">
@@ -111,7 +185,17 @@
                     <input
                       v-model="form.Cphone"
                       type="text"
-                      class="w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600"
+                      :disabled="can == false"
+                      class="
+                        w-full
+                        py-2
+                        px-2
+                        bg-gray-200
+                        rounded-lg
+                        shadow-sm
+                        focus:outline-none focus:shadow-outline
+                        text-gray-600
+                      "
                     />
                   </div>
                 </div>
@@ -124,14 +208,38 @@
                     <datepicker
                       v-model="form.Sdate"
                       name="uniquename"
-                      class="py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600"
+                      :disabled="can == false"
+                      class="
+                        py-2
+                        px-2
+                        bg-gray-200
+                        rounded-lg
+                        shadow-sm
+                        focus:outline-none focus:shadow-outline
+                        text-gray-600
+                      "
                     ></datepicker>
                   </div>
                 </div>
 
                 <div class="flex float-right mt-2">
                   <button
-                    class="items-center px-3 py-2 bg-green-500 border rounded-md text-xs text-white hover:bg-blue-800 focus:outline-none focus:ring ring-gray-300 transition ease-in-out duration-150"
+                  :disabled="can == false"
+                    class="
+                      items-center
+                      px-3
+                      py-2
+                      bg-green-500
+                      border
+                      rounded-md
+                      text-xs text-white
+                      hover:bg-blue-800
+                      focus:outline-none focus:ring
+                      ring-gray-300
+                      transition
+                      ease-in-out
+                      duration-150
+                    "
                   >
                     Save
                   </button>
@@ -159,11 +267,11 @@ export default {
   },
 
   methods: {
-    update(form) {
+    submit(form) {
       axios
-        .put(`updateB/${form.id}`, this.form[0])
+        .post(`/Job-details/${form.user_id}`, this.form)
         .then((response) => {
-          this.$notify({ message: "Updated Successfully" });
+          this.$notify({ message: "Created Successfully" });
           this.showForm = false;
           this.$emit("reloadData");
         })

@@ -3,13 +3,17 @@ import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
 import Index from "./pages/Index";
-import Admin from "./pages/Admin";
+import MyDetails from "./pages/MyDetails";
+import UserTable from "./pages/UserTable";
+import CreateEmployee from "./components/Admin/Create-user";
 import View from "./pages/View";
 
 const routes = [
-    { path: '/', component: Index },
-    { path: '/Employees', component: Admin },
-    { path: '/AdminView/:id', component: View, name: 'admin.view' }
+    { path: '/', component: MyDetails },
+    { path: '/Employees', component: UserTable },
+    { path: '/Create-Employee', component: CreateEmployee },
+    { path: '/Employee-Details', component: Index },
+    { path: '/UserDetails/:id', component: Index, name: 'user.details' }
   ]
 
 const router = new VueRouter({

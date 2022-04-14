@@ -58,4 +58,12 @@ class User extends Authenticatable
     public function images(){
         return $this->hasMany(Image::class);
     }
+
+    public function Assets(){
+        return $this->hasMany(CompanyAsset::class);
+    }
+
+    public function trainings(){
+        return $this->hasMany(Training::class);
+    }
 }

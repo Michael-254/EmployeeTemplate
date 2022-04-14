@@ -26,6 +26,7 @@
                     >
                     <input
                       v-model="docName"
+                      :disabled="can == false"
                       class="
                         w-full
                         py-2
@@ -43,6 +44,7 @@
                     }}</span>
                     <input
                       type="file"
+                      :disabled="can == false"
                       class="form-control mt-3"
                       @change="onChange"
                       ref="fileupload"
@@ -57,6 +59,7 @@
 
                 <div class="flex float-right mt-2 mb-4">
                   <button
+                  :disabled="can == false"
                     class="
                       items-center
                       px-3
@@ -94,8 +97,11 @@
                           </td>
                           <td>
                             <div
-                              class="border rounded-md shadow-md px-3 py-2 mr-2"
+                              class="border rounded-md shadow-md p-2 flex mr-2"
                             >
+                              <p class="font-semibold text-blue-600 mr-2">
+                                File Name:
+                              </p>
                               {{ doc.file }}
                             </div>
                           </td>
@@ -171,6 +177,7 @@ export default {
       file: "",
       docName: "",
       errors: {},
+      employee_id: this.$route.params.id,
     };
   },
 
@@ -184,7 +191,7 @@ export default {
       data.append("docName", this.docName);
 
       axios
-        .post("/upload", data)
+        .post(`/upload-documents/${this.employee_id}`, data)
         .then((response) => {
           this.$notify({ message: "Uploaded SuccessFully" });
           this.$refs.fileupload.value = null;
@@ -197,19 +204,14 @@ export default {
     },
     destroy(doc) {
       if (confirm("Are you sure?")) {
-        axios
-          .delete(`remove/${doc.id}`)
-          .then(() => {
-            this.$emit("reloadData");
-            this.$notify({ message: "Deleted", type: "warning" });
-          })
-          .catch((e) => {
-            console.log(e);
-          });
+        axios.delete(`/removeDoc/${doc.id}`).then(() => {
+          this.$emit("reloadData");
+          this.$notify({ message: "Deleted", type: "warning" });
+        });
       }
     },
     view(doc) {
-      window.open("View/" + doc.id, "_blank");
+      window.open("/View/" + doc.id, "_blank");
     },
   },
 };

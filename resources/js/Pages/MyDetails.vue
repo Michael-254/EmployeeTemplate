@@ -36,7 +36,7 @@ export default {
     methods: {
        fetchData(){
             axios
-                .get("/Employee-details/" + this.$route.params.id)
+                .get("/index")
                 .then((response) => {
                     this.data = response.data.user;
                     this.canWrite = response.data.canwrite;

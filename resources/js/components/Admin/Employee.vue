@@ -1,7 +1,7 @@
 <template>
   <div>
     <section class="max-w-3xl mx-auto mt-3 font-serif">
-      <form @submit.prevent="submit">
+      <form @submit.prevent="update(form)">
         <div class="bg-white lg:flex lg:shadow-lg lg:rounded-lg">
           <div class="p-3">
             <span
@@ -19,13 +19,21 @@
                 </div>
                 <div class="mt-4 flex space-x-2">
                   <div class="flex-1">
-                    <label class="text-blue-500 font-semibold"
-                      >Title</label
-                    >
+                    <label class="text-blue-500 font-semibold">Title</label>
                     <select
                       v-model="form.salutation"
                       type="text"
-                      class="w-full py-2 px-2 rounded-lg shadow-sm focus:outline-none focus:shadow-outline bg-gray-200 text-gray-600"
+                      :disabled="can == false"
+                      class="
+                        w-full
+                        py-2
+                        px-2
+                        rounded-lg
+                        shadow-sm
+                        focus:outline-none focus:shadow-outline
+                        bg-gray-200
+                        text-gray-600
+                      "
                     >
                       <option value="">-- Select Title --</option>
                       <option value="Mr">Mr</option>
@@ -39,8 +47,18 @@
                     <input
                       v-model="form.Fname"
                       placeholder="(Surname) Other Names"
+                      :disabled="can == false"
                       type="text"
-                      class="w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600"
+                      class="
+                        w-full
+                        py-2
+                        px-2
+                        bg-gray-200
+                        rounded-lg
+                        shadow-sm
+                        focus:outline-none focus:shadow-outline
+                        text-gray-600
+                      "
                     />
                     <span class="text-sm text-red-600" v-if="errors.Fname">{{
                       errors.Fname[0]
@@ -56,7 +74,17 @@
                     <input
                       v-model="form.street"
                       type="text"
-                      class="w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600"
+                      :disabled="can == false"
+                      class="
+                        w-full
+                        py-2
+                        px-2
+                        bg-gray-200
+                        rounded-lg
+                        shadow-sm
+                        focus:outline-none focus:shadow-outline
+                        text-gray-600
+                      "
                     />
                   </div>
                   <div class="flex-1">
@@ -66,7 +94,17 @@
                     <input
                       v-model="form.apartment"
                       type="text"
-                      class="w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600"
+                      :disabled="can == false"
+                      class="
+                        w-full
+                        py-2
+                        px-2
+                        bg-gray-200
+                        rounded-lg
+                        shadow-sm
+                        focus:outline-none focus:shadow-outline
+                        text-gray-600
+                      "
                     />
                   </div>
                 </div>
@@ -77,7 +115,17 @@
                     <input
                       v-model="form.city"
                       type="text"
-                      class="w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600"
+                      :disabled="can == false"
+                      class="
+                        w-full
+                        py-2
+                        px-2
+                        bg-gray-200
+                        rounded-lg
+                        shadow-sm
+                        focus:outline-none focus:shadow-outline
+                        text-gray-600
+                      "
                     />
                   </div>
                   <div class="flex-1">
@@ -85,15 +133,37 @@
                     <input
                       v-model="form.state"
                       type="text"
-                      class="w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600"
+                      :disabled="can == false"
+                      class="
+                        w-full
+                        py-2
+                        px-2
+                        bg-gray-200
+                        rounded-lg
+                        shadow-sm
+                        focus:outline-none focus:shadow-outline
+                        text-gray-600
+                      "
                     />
                   </div>
                   <div class="flex-1">
-                    <label class="text-blue-500 font-semibold">Postal Code</label>
+                    <label class="text-blue-500 font-semibold"
+                      >Postal Code</label
+                    >
                     <input
                       v-model="form.Zcode"
                       type="text"
-                      class="w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600"
+                      :disabled="can == false"
+                      class="
+                        w-full
+                        py-2
+                        px-2
+                        bg-gray-200
+                        rounded-lg
+                        shadow-sm
+                        focus:outline-none focus:shadow-outline
+                        text-gray-600
+                      "
                     />
                   </div>
                 </div>
@@ -106,7 +176,17 @@
                     <input
                       v-model="form.Hphone"
                       type="text"
-                      class="w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600"
+                      :disabled="can == false"
+                      class="
+                        w-full
+                        py-2
+                        px-2
+                        bg-gray-200
+                        rounded-lg
+                        shadow-sm
+                        focus:outline-none focus:shadow-outline
+                        text-gray-600
+                      "
                     />
                   </div>
                   <div class="flex-1">
@@ -116,7 +196,17 @@
                     <input
                       v-model="form.Aphone"
                       type="text"
-                      class="w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600"
+                      :disabled="can == false"
+                      class="
+                        w-full
+                        py-2
+                        px-2
+                        bg-gray-200
+                        rounded-lg
+                        shadow-sm
+                        focus:outline-none focus:shadow-outline
+                        text-gray-600
+                      "
                     />
                   </div>
                 </div>
@@ -129,7 +219,17 @@
                     <input
                       v-model="form.Pemail"
                       type="email"
-                      class="w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600"
+                      :disabled="can == false"
+                      class="
+                        w-full
+                        py-2
+                        px-2
+                        bg-gray-200
+                        rounded-lg
+                        shadow-sm
+                        focus:outline-none focus:shadow-outline
+                        text-gray-600
+                      "
                     />
                   </div>
                 </div>
@@ -142,7 +242,17 @@
                     <input
                       v-model="form.nationalId"
                       type="text"
-                      class="w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600"
+                      :disabled="can == false"
+                      class="
+                        w-full
+                        py-2
+                        px-2
+                        bg-gray-200
+                        rounded-lg
+                        shadow-sm
+                        focus:outline-none focus:shadow-outline
+                        text-gray-600
+                      "
                     />
                     <span
                       class="text-sm text-red-600"
@@ -157,7 +267,17 @@
                     <input
                       v-model="form.Krapin"
                       type="text"
-                      class="w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600"
+                      :disabled="can == false"
+                      class="
+                        w-full
+                        py-2
+                        px-2
+                        bg-gray-200
+                        rounded-lg
+                        shadow-sm
+                        focus:outline-none focus:shadow-outline
+                        text-gray-600
+                      "
                     />
                   </div>
                   <div class="flex-1">
@@ -167,7 +287,17 @@
                     <input
                       v-model="form.nssf"
                       type="text"
-                      class="w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600"
+                      :disabled="can == false"
+                      class="
+                        w-full
+                        py-2
+                        px-2
+                        bg-gray-200
+                        rounded-lg
+                        shadow-sm
+                        focus:outline-none focus:shadow-outline
+                        text-gray-600
+                      "
                     />
                   </div>
                   <div class="flex-1">
@@ -177,20 +307,38 @@
                     <input
                       v-model="form.nhif"
                       type="text"
-                      class="w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600"
+                      :disabled="can == false"
+                      class="
+                        w-full
+                        py-2
+                        px-2
+                        bg-gray-200
+                        rounded-lg
+                        shadow-sm
+                        focus:outline-none focus:shadow-outline
+                        text-gray-600
+                      "
                     />
                   </div>
                 </div>
 
                 <div class="mt-2 flex space-x-2">
                   <div class="flex-1">
-                    <label class="text-blue-500 font-semibold"
-                      >Bank Name</label
-                    >
+                    <label class="text-blue-500 font-semibold">Bank Name</label>
                     <input
                       v-model="form.Bankname"
                       type="text"
-                      class="w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600"
+                      :disabled="can == false"
+                      class="
+                        w-full
+                        py-2
+                        px-2
+                        bg-gray-200
+                        rounded-lg
+                        shadow-sm
+                        focus:outline-none focus:shadow-outline
+                        text-gray-600
+                      "
                     />
                   </div>
                 </div>
@@ -203,7 +351,17 @@
                     <input
                       v-model="form.AccNo"
                       type="text"
-                      class="w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600"
+                      :disabled="can == false"
+                      class="
+                        w-full
+                        py-2
+                        px-2
+                        bg-gray-200
+                        rounded-lg
+                        shadow-sm
+                        focus:outline-none focus:shadow-outline
+                        text-gray-600
+                      "
                     />
                   </div>
                   <div class="flex-1">
@@ -213,7 +371,17 @@
                     <input
                       v-model="form.Branchname"
                       type="text"
-                      class="w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600"
+                      :disabled="can == false"
+                      class="
+                        w-full
+                        py-2
+                        px-2
+                        bg-gray-200
+                        rounded-lg
+                        shadow-sm
+                        focus:outline-none focus:shadow-outline
+                        text-gray-600
+                      "
                     />
                   </div>
                   <div class="flex-1">
@@ -223,7 +391,17 @@
                     <input
                       v-model="form.Branchcode"
                       type="text"
-                      class="w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600"
+                      :disabled="can == false"
+                      class="
+                        w-full
+                        py-2
+                        px-2
+                        bg-gray-200
+                        rounded-lg
+                        shadow-sm
+                        focus:outline-none focus:shadow-outline
+                        text-gray-600
+                      "
                     />
                   </div>
                 </div>
@@ -236,7 +414,16 @@
                     <datepicker
                       v-model="form.dob"
                       name="uniquename"
-                      class="py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600"
+                      :disabled="can == false"
+                      class="
+                        py-2
+                        px-2
+                        bg-gray-200
+                        rounded-lg
+                        shadow-sm
+                        focus:outline-none focus:shadow-outline
+                        text-gray-600
+                      "
                     ></datepicker>
                     <span class="text-sm text-red-600" v-if="errors.dob">{{
                       errors.dob[0]
@@ -248,9 +435,18 @@
                     >
                     <select
                       v-model="form.status"
+                      :disabled="can == false"
                       @change="getStatus"
                       type="text"
-                      class="w-full py-1 rounded-lg shadow-sm focus:outline-none focus:shadow-outline bg-gray-200 text-gray-600"
+                      class="
+                        w-full
+                        py-1
+                        rounded-lg
+                        shadow-sm
+                        focus:outline-none focus:shadow-outline
+                        bg-gray-200
+                        text-gray-600
+                      "
                     >
                       <option value="">-- Select Status --</option>
                       <option value="single">Single</option>
@@ -269,7 +465,17 @@
                         <input
                           v-model="form.spouseN"
                           type="text"
-                          class="w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600"
+                          :disabled="can == false"
+                          class="
+                            w-full
+                            py-2
+                            px-2
+                            bg-gray-200
+                            rounded-lg
+                            shadow-sm
+                            focus:outline-none focus:shadow-outline
+                            text-gray-600
+                          "
                         />
                       </div>
                     </div>
@@ -281,7 +487,17 @@
                         <input
                           v-model="form.spouseE"
                           type="text"
-                          class="w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600"
+                          :disabled="can == false"
+                          class="
+                            w-full
+                            py-2
+                            px-2
+                            bg-gray-200
+                            rounded-lg
+                            shadow-sm
+                            focus:outline-none focus:shadow-outline
+                            text-gray-600
+                          "
                         />
                       </div>
                       <div class="flex-1">
@@ -291,7 +507,17 @@
                         <input
                           v-model="form.spousePhone"
                           type="text"
-                          class="w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600"
+                          :disabled="can == false"
+                          class="
+                            w-full
+                            py-2
+                            px-2
+                            bg-gray-200
+                            rounded-lg
+                            shadow-sm
+                            focus:outline-none focus:shadow-outline
+                            text-gray-600
+                          "
                         />
                       </div>
                     </div>
@@ -300,7 +526,22 @@
 
                 <div class="flex float-right mt-2">
                   <button
-                    class="items-center px-3 py-2 bg-green-500 border rounded-md text-xs text-white hover:bg-blue-800 focus:outline-none focus:ring ring-gray-300 transition ease-in-out duration-150"
+                    :disabled="can == false"
+                    class="
+                      items-center
+                      px-3
+                      py-2
+                      bg-green-500
+                      border
+                      rounded-md
+                      text-xs text-white
+                      hover:bg-blue-800
+                      focus:outline-none focus:ring
+                      ring-gray-300
+                      transition
+                      ease-in-out
+                      duration-150
+                    "
                   >
                     Save
                   </button>
@@ -318,36 +559,12 @@
 import Datepicker from "vuejs-datepicker";
 export default {
   components: { Datepicker },
+  props: ["form","can"],
   data() {
     return {
       showForm: false,
       IsMarried: false,
       user: window.user,
-      form: {
-        Fname: "",
-        street: "",
-        apartment: "",
-        city: "",
-        state: "",
-        Zcode: "",
-        Hphone: "",
-        Aphone: "",
-        Pemail: "",
-        nationalId: "",
-        Krapin: "",
-        nssf: "",
-        nhif: "",
-        dob: "",
-        status: "",
-        spouseN: "",
-        spouseE: "",
-        spousePhone: "",
-        salutation: "",
-        Bankname: "",
-        AccNo: "",
-        Branchname: "",
-        Branchcode: "",
-      },
       errors: {},
     };
   },
@@ -361,13 +578,12 @@ export default {
       }
     },
 
-    submit() {
+    update(form) {
       axios
-        .post("/store", this.form)
+        .post(`/Personal-details/${form.user_id}`, this.form)
         .then((response) => {
-          this.$notify({ message: "Created Successfully" });
+          this.$notify({ message: "Updated Successfully" });
           this.showForm = false;
-          this.form = "";
           this.$emit("reloadData");
         })
         .catch((e) => {

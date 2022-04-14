@@ -55,6 +55,13 @@
           <i class="fas fa-users"></i>
           <router-link to="/Employees">Employees</router-link>
         </p>
+        <p
+          v-if="user.admin == true"
+          class="ml-3 cursor-pointer font-normal hover:font-bold hover:text-blue-600"
+        >
+          <i class="fas fa-user"></i>
+          <router-link to="/Create-Employee">New Employee</router-link>
+        </p>
       </div>
     </header>
   </div>

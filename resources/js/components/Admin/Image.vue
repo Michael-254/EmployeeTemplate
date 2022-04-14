@@ -133,6 +133,7 @@
                             <div class="border rounded-md shadow-md p-2 mr-2">
                               <button
                                 @click.prevent="destroy(doc)"
+                                :disabled="can == false"
                                 class="
                                   items-center
                                   px-3
@@ -169,7 +170,7 @@
 
 <script>
 export default {
-  props: ["docs"],
+  props: ["docs","can"],
   data() {
     return {
       showForm: false,

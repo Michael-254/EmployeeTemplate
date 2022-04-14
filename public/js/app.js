@@ -4001,8 +4001,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["docs"],
+  props: ["docs", "can"],
   data: function data() {
     return {
       showForm: false,
@@ -4327,7 +4328,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["form"],
+  props: ["form", "can"],
   components: {
     Datepicker: vuejs_datepicker__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
@@ -83841,6 +83842,10 @@ var render = function () {
                                                   {
                                                     staticClass:
                                                       "\n                                items-center\n                                px-3\n                                py-2\n                                bg-red-500\n                                border\n                                rounded-md\n                                text-xs text-white\n                                hover:bg-red-800\n                                focus:outline-none focus:ring\n                                ring-gray-300\n                                transition\n                                ease-in-out\n                                duration-150\n                              ",
+                                                    attrs: {
+                                                      disabled:
+                                                        _vm.can == false,
+                                                    },
                                                     on: {
                                                       click: function ($event) {
                                                         $event.preventDefault()

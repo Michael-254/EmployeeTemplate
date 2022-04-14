@@ -256,7 +256,7 @@
 <script>
 import Datepicker from "vuejs-datepicker";
 export default {
-  props: ["form"],
+  props: ["form","can"],
   components: { Datepicker },
   data() {
     return {

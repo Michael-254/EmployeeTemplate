@@ -148,7 +148,7 @@
                               {{  new Date(doc.date_issued).toLocaleDateString()}}
                             </div>
                           </td>
-                          <td>
+                          <td v-if="can == true">
                             <div class="border rounded-md shadow-md p-2 mr-2">
                               <button
                                 @click.prevent="destroy(doc)"

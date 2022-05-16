@@ -8,6 +8,7 @@ use App\Models\EmergencyC;
 use App\Models\EmployeeTemplate;
 use App\Models\Image;
 use App\Models\JobInfo;
+use App\Models\Training;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,15 +21,24 @@ class EmployeeTemplateController extends Controller
     {
         $user = User::findOrFail(auth()->id())->load('Employees', 'jobInfos', 'emergency', 'Images', 'Assets', 'trainings');
         $canwrite = false;
-        return response()->json(['user' => $user,'canwrite'=>$canwrite]);
+        return response()->json(['user' => $user, 'canwrite' => $canwrite]);
     }
 
-    //file
+    //personal Docs view
     public function file($id)
     {
-        $image = Image::find($id);
+        $image = Image::findOrFail($id);
         $filename = $image->file;
         $path = storage_path('app/public/images/' . $filename);
+        return response()->file($path);
+    }
+
+    //Training Docs view
+    public function TrainingFile($id)
+    {
+        $image = Training::findOrFail($id);
+        $filename = $image->file;
+        $path = storage_path('app/public/images/Trainings/' . $filename);
         return response()->file($path);
     }
 

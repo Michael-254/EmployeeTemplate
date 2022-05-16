@@ -222,7 +222,7 @@
                   </div>
                 </div>
 
-                <div class="flex float-right mt-2">
+                <div v-if="can == true" class="flex float-right mt-2">
                   <button
                   :disabled="can == false"
                     class="

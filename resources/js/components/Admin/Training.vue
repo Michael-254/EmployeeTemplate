@@ -39,7 +39,56 @@
                     />
                     <p class="text-sm text-red-600" v-if="errors.trainingName">{{
                       errors.trainingName[0]
-                    }}</p>
+                    }}</p>                    
+                  </div>
+                  <div class="flex-1">
+                    <label class="text-blue-500 font-semibold"
+                      >Trainer</label
+                    >
+                    <input
+                      v-model="trainer"
+                      class="
+                        w-full
+                        py-2
+                        px-2
+                        bg-gray-200
+                        rounded-lg
+                        shadow-sm
+                        focus:outline-none focus:shadow-outline
+                        text-gray-600
+                      "
+                      placeholder="Trainer"
+                    />
+                    <p class="text-sm text-red-600" v-if="errors.trainer">{{
+                      errors.trainer[0]
+                    }}</p>                    
+                  </div>
+                  <div class="flex-1">
+                    <label class="text-blue-500 font-semibold"
+                      >Training company</label
+                    >
+                    <input
+                      v-model="trainingCompany"
+                      class="
+                        w-full
+                        py-2
+                        px-2
+                        bg-gray-200
+                        rounded-lg
+                        shadow-sm
+                        focus:outline-none focus:shadow-outline
+                        text-gray-600
+                      "
+                      placeholder="Training Company"
+                    />
+                    <p class="text-sm text-red-600" v-if="errors.trainingCompany">{{
+                      errors.trainingCompany[0]
+                    }}</p>                    
+                  </div>
+                </div>
+
+             <div class="mt-2 flex space-x-2">
+                  <div class="flex-1">
                     <label class="text-blue-500 font-semibold mt-2"
                       >Date completed</label
                     >
@@ -51,14 +100,53 @@
                     <p class="text-sm text-red-600" v-if="errors.date">{{
                       errors.date[0]
                     }}</p>
-                     <input
-                      type="file"
-                      class="form-control mt-3"
-                      @change="onChange"
-                      ref="fileupload"
-                    />
+                  </div>
+                  <div class="flex-1">
+                    <label class="text-blue-500 font-semibold"
+                      >Certificate Issued:</label
+                    >
+                    <select
+                      v-model="Certstatus"
+                      :disabled="can == false"
+                      @change="getStatus"
+                      type="text"
+                      class="
+                        w-full
+                        py-1
+                        rounded-lg
+                        shadow-sm
+                        focus:outline-none focus:shadow-outline
+                        bg-gray-200
+                        text-gray-600
+                      "
+                    >
+                      <option value="">-- Select Status --</option>
+                      <option value="yes">Yes</option>
+                      <option value="no">No</option>
+                    </select>
+                     <p class="text-sm text-red-600" v-if="errors.Certstatus">{{
+                      errors.Certstatus[0]
+                    }}</p>
                   </div>
                 </div>
+
+                <transition name="slide-fade">
+                  <div v-if="IsIssued">
+                    <div class="mt-2 flex space-x-2">
+                      <div class="flex-1">
+                          <input
+                            type="file"
+                            class="form-control mt-3"
+                            @change="onChange"
+                            ref="fileupload"
+                          />
+                          <p class="text-sm text-red-600" v-if="errors.file">{{
+                            errors.file[0]
+                          }}</p>
+                      </div>
+                    </div>
+                  </div>
+                </transition>
 
                 <div class="flex float-right mt-2 mb-4">
                   <button
@@ -85,92 +173,48 @@
                 </div>
 
                 <div>
-                  <table class="text-left w-full border-collapse mt-2">
-                    <transition-group name="list" tag="p">
-                      <tbody v-for="doc in docs" :key="doc.id">
-                        <tr class="hover:bg-grey-lighter">
-                          <td>
-                            <div
-                              class="border rounded-md shadow-md p-2 flex mr-2"
-                            >
-                              <p class="font-semibold text-blue-600 mr-2">
-                                Document Name:
-                              </p>
-                              {{ doc.training_name }} 
-                            </div>
-                          </td>
-                          <td>
-                            <div
-                              class="border rounded-md shadow-md p-2 flex mr-2"
-                            >
-                              <p class="font-semibold text-blue-600 mr-2">
-                                Date Graduated:
-                              </p>
-                              {{  new Date(doc.date_completed).toLocaleDateString()}}
-                            </div>
-                          </td>
-                          <td v-if="doc.file">
-                            <div
-                              class="border rounded-md shadow-md p-2 flex mr-2"
-                            >
-                              <p class="font-semibold text-blue-600 mr-2">
-                                File Name:
-                              </p>
-                              {{ doc.file }} 
-                            </div>
-                          </td>
-                          <td>
-                            <div class="border rounded-md shadow-md p-2 mr-2">
-                              <a
-                                @click.prevent="view(doc)"
-                                class="
-                                  cursor-pointer
-                                  items-center
-                                  px-3
-                                  py-2
-                                  bg-blue-500
-                                  border
-                                  rounded-md
-                                  text-xs text-white
-                                  hover:bg-blue-800
-                                  focus:outline-none focus:ring
-                                  ring-gray-300
-                                  transition
-                                  ease-in-out
-                                  duration-150
-                                "
-                                >Open</a
-                              >
-                            </div>
-                          </td>
-                          <td>
-                            <div class="border rounded-md shadow-md p-2 mr-2">
-                              <button
-                                @click.prevent="destroy(doc)"
-                                :disabled="can == false"
-                                class="
-                                  items-center
-                                  px-3
-                                  py-2
-                                  bg-red-500
-                                  border
-                                  rounded-md
-                                  text-xs text-white
-                                  hover:bg-red-800
-                                  focus:outline-none focus:ring
-                                  ring-gray-300
-                                  transition
-                                  ease-in-out
-                                  duration-150
-                                "
-                              >
-                                Delete
-                              </button>
-                            </div>
-                          </td>
+                  <table class="min-w-full block md:table border-collapse mt-2">
+                      <thead>
+                        <tr>
+                          <td><p class="font-semibold text-blue-600 mr-2">Document Name</p></td>
+                          <td><p class="font-semibold text-blue-600 mr-2">Date Graduated</p></td>
+                          <td><p class="font-semibold text-blue-600 mr-2">File Name</p></td>
+                          <td><p class="font-semibold text-blue-600 mr-2">Trainer</p></td>
+                          <td><p class="font-semibold text-blue-600 mr-2">Training Company</p></td>
+                          <td><p class="font-semibold text-blue-600 mr-2">Action</p></td>
                         </tr>
-                      </tbody>
-                    </transition-group>
+                      </thead>
+                        <tbody  v-for="doc in docs" :key="doc.id">
+                          <tr class="hover:bg-grey-lighter">
+                            <td>
+                                {{ doc.training_name }} 
+                            </td>
+                            <td>
+                                {{  new Date(doc.date_completed).toLocaleDateString()}}>
+                            </td>
+                            <td>
+                                <a class="cursor-pointer text-blue-600 hover:text-blue-800"
+                                  @click.prevent="view(doc)">
+                                  {{ doc.file }}
+                                </a>                                
+                            </td>
+                            <td>
+                                {{ doc.trainer }} 
+                            </td>
+                            <td>
+                                {{ doc.training_company }} 
+                            </td>
+                            <td v-if="can == true">
+                              <div class="flex space-x-2">
+                                <button
+                                  @click.prevent="destroy(doc)"
+                                  :disabled="can == false">
+                                  <i class="fas fa-trash text-red-500 hover:text-red-800"></i>
+                                </button>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
                   </table>
                 </div>
               </div>
@@ -193,7 +237,11 @@ export default {
       user: window.user,
       file: "",
       trainingName: "",
+      trainer: "",
+      trainingCompany: "",
+      Certstatus: "",
       date: "",
+      IsIssued: false,
       errors: {},
       employee_id: this.$route.params.id,
     };
@@ -208,14 +256,20 @@ export default {
       form.append("file", this.file);
       form.append("date", this.date);
       form.append("trainingName", this.trainingName);
+      form.append("trainer", this.trainer);
+      form.append("trainingCompany", this.trainingCompany);
+      form.append("Certstatus", this.Certstatus);
 
-      axios
-        .post(`/training-record/${this.employee_id}`, form)
+      axios.post(`/training-record/${this.employee_id}`, form)
         .then((response) => {
           this.$notify({ message: "Uploaded SuccessFully" });
-          this.$refs.fileupload.value = null;
-          this.docName = "";
           this.$emit("reloadData");
+          this.date= "";
+          this.trainingName= "";
+          this.trainer= "";
+          this.trainingCompany= "";
+          this.Certstatus= "";
+          this.$refs.fileupload.value = null;
         })
         .catch((e) => {
           this.errors = e.response.data.errors;
@@ -232,7 +286,14 @@ export default {
       }
     },
     view(doc) {
-      window.open("/View/" + doc.id, "_blank");
+      window.open("/TrainingDoc/" + doc.id, "_blank");
+    },
+    getStatus() {
+      if (this.Certstatus == "yes") {
+        this.IsIssued = true;
+      } else {
+        this.IsIssued = false;
+      }
     },
   },
 };

@@ -15,12 +15,12 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" onkeyup="this.value = this.value.toUpperCase();" required autocomplete="name" autofocus>
 
                                 @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>
@@ -32,9 +32,9 @@
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                                 @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>
@@ -44,18 +44,18 @@
 
                             <div class="col-md-6">
                                 <select id="site" class="form-control @error('name') is-invalid @enderror" name="site" value="{{ old('site') }}" required>
-                                          <option value="">-- Select Site --</option>
-                                          <option value="Head Office">Head Office</option>
-                                          <option value="Kiambere">Kiambere</option>
-                                          <option value="Dokolo">Dokolo</option>
-                                          <option value="Nyongoro">Nyongoro</option>
-                                          <option value="7 Forks">7 Forks</option>
-                                          <option value="Sosoma">Sosoma</option>
+                                    <option value="">-- Select Site --</option>
+                                    <option value="Head Office">Head Office</option>
+                                    <option value="Kiambere">Kiambere</option>
+                                    <option value="Dokolo">Dokolo</option>
+                                    <option value="Nyongoro">Nyongoro</option>
+                                    <option value="7 Forks">7 Forks</option>
+                                    <option value="Kampala">Kampala</option>
                                 </select>
                                 @error('site')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>
@@ -65,21 +65,21 @@
 
                             <div class="col-md-6">
                                 <select id="department" class="form-control @error('name') is-invalid @enderror" name="department" value="{{ old('department') }}" required>
-                                          <option value="">-- Select Dept --</option>
-                                          <option value="Management">Management</option>
-                                          <option value="Forestry">Forestry</option>
-                                          <option value="Human Resources">HR</option>
-                                          <option value="Information Technology">IT</option>
-                                          <option value="Operations">Operations</option>
-                                          <option value="Accounts">Accounts</option>
-                                          <option value="M&E">M&E</option>
-                                          <option value="Miti Magazine">Miti Magazine</option>
-                                          <option value="Communications">Communications</option>
+                                    <option value="">-- Select Dept --</option>
+                                    <option value="Management">Management</option>
+                                    <option value="Forestry">Forestry</option>
+                                    <option value="Human Resources">HR</option>
+                                    <option value="Information Technology">IT</option>
+                                    <option value="Operations">Operations</option>
+                                    <option value="Accounts">Accounts</option>
+                                    <option value="M&E">M&E</option>
+                                    <option value="Miti Magazine">Miti Magazine</option>
+                                    <option value="Communications">Communications</option>
                                 </select>
                                 @error('department')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>
@@ -91,9 +91,9 @@
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                                 @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>

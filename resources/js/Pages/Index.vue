@@ -1,8 +1,12 @@
 <template>
-  <div class="min-h-screen" >
+  <div class="min-h-screen font-serif" >
      <bridge-notify />
      <div>
        <h3 class="text-blue-500 text-center font-bold text-xl">{{ data.name }} Information Sheet</h3>
+       <div class="flex justify-center items-center mt-1">
+       <i class="fas fa-file mr-1 text-blue-600"></i>
+       <router-link class="text-blue-600 font-bold" :to="{ name: 'view.pdf', params: { id: data.id } }">Generate PDF</router-link>
+       </div>
      </div>
         <app-employee :form="data.employees" :can="canWrite" @reloadData='fetchData'/>
         <app-jobinfo :form="data.job_infos" :can="canWrite" @reloadData='fetchData'/>

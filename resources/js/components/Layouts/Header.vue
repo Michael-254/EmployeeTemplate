@@ -72,7 +72,7 @@ export default {
   data() {
     return {
       user: window.user,
-       image: '/storage/logo.png', 
+       image: '/storage/images/logo.jpg', 
     };
   },
   methods: {

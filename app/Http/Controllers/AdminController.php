@@ -17,8 +17,11 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $data = User::when(request('filterId', '') != '', function ($query) {
-            $query->where('id', request('filterId'));
+        $data = User::when(request('search', '') != '', function ($query) {
+            $query->where('name', 'like', '%' . request('search') . '%')
+                ->orWhere('email', 'like', '%' . request('search') . '%')
+                ->orWhere('department', 'like', '%' . request('search') . '%')
+                ->orWhere('site', 'like', '%' . request('search') . '%');
         })
             ->when(request('dept', '') != '', function ($query) {
                 $query->where('department', 'like', '%' . request('dept') . '%');
@@ -56,7 +59,7 @@ class AdminController extends Controller
     {
         $user = User::findOrFail($id)->load('Employees', 'jobInfos', 'emergency', 'Images', 'Assets', 'trainings');
         $canwrite = true;
-        return response()->json(['user' => $user,'canwrite'=>$canwrite]);
+        return response()->json(['user' => $user, 'canwrite' => $canwrite]);
     }
 
     public function personalDetails(Request $request, $id)
@@ -129,7 +132,8 @@ class AdminController extends Controller
         ]);
 
         if ($request->hasFile('file')) {
-            $name = $id . $request->file->getClientOriginalName();
+            $user = User::findOrFail($id);
+            $name = $user->name . '-' . $request->file->getClientOriginalName();
             $request->file->storeAs('public/images', $name);
             $upload = Image::Create([
                 'user_id' => $id,
@@ -175,22 +179,32 @@ class AdminController extends Controller
     {
         $request->validate([
             'trainingName' => 'required',
-            'date' => 'required'
+            'trainingCompany' => 'required',
+            'trainer' => 'required',
+            'Certstatus' => 'required',
+            'date' => 'required',
+            'file' => 'required_if:Certstatus,yes'
         ]);
 
         $upload = Training::Create([
             'user_id' => $id,
             'training_name' => $request->trainingName,
+            'training_company' => $request->trainingCompany,
+            'trainer' => $request->trainer,
+            'cert_status' => $request->Certstatus,
             'date_completed' => $request->date
         ]);
 
         if ($request->hasFile('file')) {
-            $name = $id . $request->file->getClientOriginalName();
+            $user = User::findOrFail($id);
+            $name = $user->name . '-' . $request->file->getClientOriginalName();
             $request->file->storeAs('public/images/Trainings', $name);
             $upload->update([
                 'file' => $name,
             ]);
         }
+
+        return response($upload, Response::HTTP_CREATED);
     }
 
     public function destroyTraining($id)
@@ -198,5 +212,29 @@ class AdminController extends Controller
         $doc = Training::findOrFail($id);
         $doc->delete();
         return response('', Response::HTTP_NO_CONTENT);
+    }
+
+    public function GeneratePDF($id)
+    {
+        $user = User::findOrFail($id)->load('Employees', 'jobInfos', 'emergency', 'Images', 'Assets', 'trainings');
+        return response()->json(['user' => $user]);
+    }
+
+    public function UserStatus(Request $request, $id)
+    {
+
+        $data = $request->validate([
+            'date_inactive' => 'required'
+        ]);
+
+        $user = User::findOrFail($id);
+        $user->update($data);
+        if ($user->employee_status == 'active') {
+            $user->update(['employee_status' => 'inactive']);
+        } else {
+            $user->update(['employee_status' => 'active']);
+        }
+
+        return response(Response::HTTP_CREATED);
     }
 }

@@ -1,410 +1,44 @@
 <template>
-  <div class="font-serif">
-    <div class="flex float-right lg:px-2">
-      <a
-        @click.prevent="getPdf()"
-        class="items-center mb-1 cursor-pointer space-x-2 px-3 py-2 border border-green-400 rounded-md bg-green-500 text-white text-xs leading-4 font-medium uppercase tracking-wider focus:outline-none hover:bg-blue-700"
-      >
-        Export Pdf
-      </a>
+  <div class="min-h-screen font-serif" >
+  <transition name="fade">
+    <div class="w-full max-w-5xl px-4 py-3 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
+        <div class="flex items-center justify-between">
+            <span class="text-xl font-bold text-blue-600">Mikedee</span>
+            <span class="px-3 py-1 text-xs text-blue-800 uppercase bg-blue-200 rounded-full dark:bg-blue-300 dark:text-blue-900">psychology</span>
+        </div>
+
+        <div>
+            <h1 class="mt-2 text-lg font-semibold text-gray-800 dark:text-white">AP® Psychology - Course 5: Health and Behavior</h1>
+            <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio eligendi similique exercitationem optio libero vitae accusamus cupiditate laborum eos.</p>
+        </div>
+
+        <div>
+            <div class="flex items-center mt-2 text-gray-700 dark:text-gray-200">
+                <span>Visit on:</span>
+                <a class="mx-2 text-blue-600 cursor-pointer dark:text-blue-400 hover:underline">edx.org</a>
+                <span>or</span>
+                <a class="mx-2 text-blue-600 cursor-pointer dark:text-blue-400 hover:underline">classcentral.com</a>
+            </div>
+
+            <div class="flex items-center justify-center mt-4">
+                <a class="mr-2 text-gray-800 cursor-pointer dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300">
+                    <svg class="w-5 h-5 fill-current" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'>
+                        <path d='M496,109.5a201.8,201.8,0,0,1-56.55,15.3,97.51,97.51,0,0,0,43.33-53.6,197.74,197.74,0,0,1-62.56,23.5A99.14,99.14,0,0,0,348.31,64c-54.42,0-98.46,43.4-98.46,96.9a93.21,93.21,0,0,0,2.54,22.1,280.7,280.7,0,0,1-203-101.3A95.69,95.69,0,0,0,36,130.4C36,164,53.53,193.7,80,211.1A97.5,97.5,0,0,1,35.22,199v1.2c0,47,34,86.1,79,95a100.76,100.76,0,0,1-25.94,3.4,94.38,94.38,0,0,1-18.51-1.8c12.51,38.5,48.92,66.5,92.05,67.3A199.59,199.59,0,0,1,39.5,405.6,203,203,0,0,1,16,404.2,278.68,278.68,0,0,0,166.74,448c181.36,0,280.44-147.7,280.44-275.8,0-4.2-.11-8.4-.31-12.5A198.48,198.48,0,0,0,496,109.5Z'/>
+                    </svg>
+                </a>
+
+                <a class="mr-2 text-gray-800 cursor-pointer dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300">
+                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14.8283 12L16.2426 13.4142L19.071 10.5858C20.6331 9.02365 20.6331 6.49099 19.071 4.9289C17.5089 3.3668 14.9762 3.3668 13.4141 4.9289L10.5857 7.75732L11.9999 9.17154L14.8283 6.34311C15.6094 5.56206 16.8757 5.56206 17.6568 6.34311C18.4378 7.12416 18.4378 8.39049 17.6568 9.17154L14.8283 12Z"/>
+                        <path d="M12 14.8285L13.4142 16.2427L10.5858 19.0711C9.02365 20.6332 6.49099 20.6332 4.9289 19.0711C3.3668 17.509 3.3668 14.9764 4.9289 13.4143L7.75732 10.5858L9.17154 12L6.34311 14.8285C5.56206 15.6095 5.56206 16.8758 6.34311 17.6569C7.12416 18.4379 8.39049 18.4379 9.17154 17.6569L12 14.8285Z"/>
+                        <path d="M14.8284 10.5857C15.2189 10.1952 15.2189 9.56199 14.8284 9.17147C14.4379 8.78094 13.8047 8.78094 13.4142 9.17147L9.17154 13.4141C8.78101 13.8046 8.78101 14.4378 9.17154 14.8283C9.56206 15.2188 10.1952 15.2188 10.5857 14.8283L14.8284 10.5857Z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
     </div>
-    <transition name="fade">
-      <div class="max-w-5xl mx-auto mb-3">
-        <section class="w-full">
-          <div class="bg-white shadow-md px-2 py-2">
-            <section class="p-2 w-full mt-2">
-              <div id="pdfDom">
-                <div class="flex justify-center mb-4">
-                  <h3 class="mt-4 font-bold text-xl">
-                    {{ forms.salutation }}:
-                    {{ forms.username }}
-                  </h3>
-                </div>
 
-                <div class="rounded border py-3 px-3">
-                  <div class="text-center mb-3">
-                    <h3 class="text-green-500 font-bold text-xl">
-                      Personal Information.
-                    </h3>
-                  </div>
-
-                  <div
-                    class="flex justify-between mt-2 border rounded-md shadow-md px-3 py-2"
-                  >
-                    <div>
-                      <label class="text-blue-500 font-bold"
-                        >Street Address</label
-                      >
-                      <p class="form-control-static">
-                        {{ forms.street }}
-                      </p>
-                    </div>
-                    <div>
-                      <label class="text-blue-500 font-bold"
-                        >Apartment/Unit</label
-                      >
-                      <p class="form-control-static">
-                        {{ forms.apartment }}
-                      </p>
-                    </div>
-                    <div>
-                      <label class="text-blue-500 font-bold">City</label>
-                      <p class="form-control-static">
-                        {{ forms.city }}
-                      </p>
-                    </div>
-                    <div>
-                      <label class="text-blue-500 font-bold">State</label>
-                      <p class="form-control-static">
-                        {{ forms.state }}
-                      </p>
-                    </div>
-                    <div>
-                      <label class="text-blue-500 font-bold">Postal Code</label>
-                      <p class="form-control-static">
-                        {{ forms.Zcode }}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div
-                    class="flex justify-between mt-2 border rounded-md shadow-md px-3 py-2"
-                  >
-                    <div>
-                      <label class="text-blue-500 font-bold">Home Phone</label>
-                      <p class="form-control-static">
-                        {{ forms.Hphone }}
-                      </p>
-                    </div>
-                    <div>
-                      <label class="text-blue-500 font-bold"
-                        >Alternate Phone</label
-                      >
-                      <p class="form-control-static">
-                        {{ forms.Aphone }}
-                      </p>
-                    </div>
-                    <div>
-                      <label class="text-blue-500 font-bold"
-                        >Personal Email Address</label
-                      >
-                      <p class="form-control-static">
-                        {{ forms.Pemail }}
-                      </p>
-                    </div>
-                    <div>
-                      <label class="text-blue-500 font-bold"
-                        >National ID
-                      </label>
-                      <p class="form-control-static">
-                        {{ forms.nationalId }}
-                      </p>
-                    </div>
-                    <div>
-                      <label class="text-blue-500 font-bold"
-                        >Tax Pin Number</label
-                      >
-                      <p class="form-control-static">
-                        {{ forms.Krapin }}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div
-                    class="flex justify-between mt-2 border rounded-md shadow-md px-3 py-2"
-                  >
-                    <div>
-                      <label class="text-blue-500 font-bold">NSSF number</label>
-                      <p class="form-control-static">
-                        {{ forms.nssf }}
-                      </p>
-                    </div>
-                    <div>
-                      <label class="text-blue-500 font-bold">NHIF Number</label>
-                      <p class="form-control-static">
-                        {{ forms.nhif }}
-                      </p>
-                    </div>
-                    <div>
-                      <label class="text-blue-500 font-bold">Birth Date</label>
-                      <datepicker v-model="forms.dob"></datepicker>
-                    </div>
-                    <div>
-                      <label class="text-blue-500 font-bold"
-                        >Marital Status
-                      </label>
-                      <p class="form-control-static">
-                        {{ forms.status }}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div
-                    class="flex justify-between mt-2 border rounded-md shadow-md px-3 py-2"
-                    v-if="forms.status == 'married'"
-                  >
-                    <div>
-                      <label class="text-blue-500 font-bold"
-                        >Spouse’s Name</label
-                      >
-                      <p class="form-control-static">
-                        {{ forms.spouseN }}
-                      </p>
-                    </div>
-                    <div>
-                      <label class="text-blue-500 font-bold"
-                        >Spouse’s Employer</label
-                      >
-                      <p class="form-control-static">
-                        {{ forms.spouseE }}
-                      </p>
-                    </div>
-                    <div>
-                      <label class="text-blue-500 font-bold"
-                        >Spouse’s Work Phone</label
-                      >
-                      <datepicker
-                        v-model="forms.spousePhone"
-                      ></datepicker>
-                    </div>
-                  </div>
-
-                  <div
-                    class="flex justify-between mt-2 border rounded-md shadow-md px-3 py-2"
-                  >
-                    <div>
-                      <label class="text-blue-500 font-bold">Bank Name</label>
-                      <p class="form-control-static">
-                        {{ forms.Bankname }}
-                      </p>
-                    </div>
-                    <div>
-                      <label class="text-blue-500 font-bold"
-                        >Account Number</label
-                      >
-                      <p class="form-control-static">
-                        {{ forms.AccNo }}
-                      </p>
-                    </div>
-                    <div>
-                      <label class="text-blue-500 font-bold">Branch Name</label>
-                      <p class="form-control-static">
-                        {{ forms.Branchname }}
-                      </p>
-                    </div>
-                    <div>
-                      <label class="text-blue-500 font-bold"
-                        >Branch Code
-                      </label>
-                      <p class="form-control-static">
-                        {{ forms.Branchcode }}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="rounded border mt-3 py-3 px-3">
-                  <div class="text-center mb-3">
-                    <h3 class="text-green-500 font-bold text-xl">
-                      Job Information.
-                    </h3>
-                  </div>
-
-                  <div
-                    class="flex justify-between mt-2 border rounded-md shadow-md px-3 py-2"
-                  >
-                    <div>
-                      <label class="text-blue-500 font-bold">Job Title</label>
-                      <p class="form-control-static">
-                        {{ forms.title }}
-                      </p>
-                    </div>
-                    <div>
-                      <label class="text-blue-500 font-bold">Employee ID</label>
-                      <p class="form-control-static">
-                        {{ forms.EmployeeId }}
-                      </p>
-                    </div>
-                    <div>
-                      <label class="text-blue-500 font-bold">Supervisor</label>
-                      <p class="form-control-static">
-                        {{ forms.supervisor }}
-                      </p>
-                    </div>
-                    <div>
-                      <label class="text-blue-500 font-bold">Department</label>
-                      <p class="form-control-static">
-                        {{ forms.department }}
-                      </p>
-                    </div>
-                    <div>
-                      <label class="text-blue-500 font-bold"
-                        >Work Location</label
-                      >
-                      <p class="form-control-static">
-                        {{ forms.Wlocation }}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div
-                    class="flex justify-between mt-2 border rounded-md shadow-md px-3 py-2"
-                  >
-                    <div>
-                      <label class="text-blue-500 font-bold"
-                        >Job E-mail Address</label
-                      >
-                      <p class="form-control-static">
-                        {{ forms.Wemail }}
-                      </p>
-                    </div>
-                    <div>
-                      <label class="text-blue-500 font-bold">Work Phone</label>
-                      <p class="form-control-static">
-                        {{ forms.Wphone }}
-                      </p>
-                    </div>
-                    <div>
-                      <label class="text-blue-500 font-bold">Cell Phone</label>
-                      <p class="form-control-static">
-                        {{ forms.Cphone }}
-                      </p>
-                    </div>
-                    <div>
-                      <label class="text-blue-500 font-bold">Start Date</label>
-                      <p class="form-control-static">
-                        <datepicker
-                          v-model="forms.Sdate"
-                        ></datepicker>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="rounded border mt-3 py-3 px-3">
-                  <div class="text-center mb-3">
-                    <h3 class="text-green-500 font-bold text-xl">
-                      Emergency Contact Information.
-                    </h3>
-                  </div>
-
-                  <div
-                    class="flex justify-between mt-2 border rounded-md shadow-md px-3 py-2"
-                  >
-                    <div>
-                      <label class="text-blue-500 font-bold">Full Names</label>
-                      <p class="form-control-static">
-                        {{ forms.Fname }}
-                      </p>
-                    </div>
-                    <div>
-                      <label class="text-blue-500 font-bold"
-                        >Street Address</label
-                      >
-                      <p class="form-control-static">
-                        {{ forms.street }}
-                      </p>
-                    </div>
-                    <div>
-                      <label class="text-blue-500 font-bold"
-                        >Apartment/Unit</label
-                      >
-                      <p class="form-control-static">
-                        {{ forms.apartment }}
-                      </p>
-                    </div>
-                    <div>
-                      <label class="text-blue-500 font-bold">City</label>
-                      <p class="form-control-static">
-                        {{ forms.city }}
-                      </p>
-                    </div>
-                    <div>
-                      <label class="text-blue-500 font-bold">State</label>
-                      <p class="form-control-static">
-                        {{ forms.state }}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div
-                    class="flex justify-between mt-2 border rounded-md shadow-md px-3 py-2"
-                  >
-                    <div>
-                      <label class="text-blue-500 font-bold">Postal Code</label>
-                      <p class="form-control-static">
-                        {{ forms.Zcode }}
-                      </p>
-                    </div>
-                    <div>
-                      <label class="text-blue-500 font-bold"
-                        >Primary Phone</label
-                      >
-                      <p class="form-control-static">
-                        {{ forms.Pphone }}
-                      </p>
-                    </div>
-                    <div>
-                      <label class="text-blue-500 font-bold"
-                        >Alternate Phone</label
-                      >
-                      <p class="form-control-static">
-                        {{ forms.Aphone }}
-                      </p>
-                    </div>
-                    <div>
-                      <label class="text-blue-500 font-bold"
-                        >Relationship</label
-                      >
-                      <p class="form-control-static">
-                        {{ forms.relationship }}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="rounded border mt-3 py-3 px-3">
-                <div class="text-center mb-3">
-                  <h3 class="text-green-500 font-bold text-xl">Documents.</h3>
-                </div>
-
-                <div
-                  class="flex justify-center mt-2 border rounded-md shadow-md px-3 py-2"
-                >
-                  <table>
-                      <tbody v-for="doc in forms.Images" :key="doc.id">
-                        <tr class="hover:bg-grey-lighter">
-                          <td>
-                            <div
-                              class="border rounded-md shadow-md p-2 flex mr-2"
-                            >
-                              <p class="font-semibold text-blue-600 mr-2">
-                                Document Name:
-                              </p>
-                              {{ doc.file }}
-                            </div>
-                          </td>
-                          <td>
-                            <div class="border rounded-md shadow-md p-2 mr-2">
-                              <a
-                                @click.prevent="view(doc)"
-                                class="cursor-pointer items-center px-3 py-2 bg-blue-500 border rounded-md text-xs text-white hover:bg-blue-800 focus:outline-none focus:ring ring-gray-300 transition ease-in-out duration-150"
-                                >Open</a
-                              >
-                            </div>
-                          </td>
-                        </tr>
-                      </tbody>
-                  </table>
-                </div>
-              </div>
-            </section>
-            <!-- footer -->
-          </div>
-        </section>
-      </div>
-    </transition>
+</transition>
   </div>
 </template>
 
@@ -413,14 +47,23 @@ import Datepicker from "vuejs-datepicker";
 import html2canvas from "html2canvas";
 import JSPDF from "jspdf";
 export default {
-  props: ["forms"],
   components: { Datepicker },
+  mounted(){
+     this.getUser();
+  },
   data() {
     return {
       user: window.user,
+      form:{},
     };
   },
   methods: {
+    getUser(){
+       axios.get("/user-PDF/" + this.$route.params.id)
+            .then((response) => {
+              this.form = response.data.user;
+            });
+    },
     view(doc) {
       window.open("View/" + doc.id, "_blank");
     },

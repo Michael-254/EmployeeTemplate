@@ -11,6 +11,7 @@
             >
             <transition name="slide-fade">
               <div v-if="showForm">
+              <div v-if="can == true">
                 <div class="mt-2">
                   <p class="text-xs text-gray-500">
                     Attach all required documents below as instructed by the HR
@@ -57,7 +58,7 @@
                   </div>
                 </div>
 
-                <div class="flex float-right mt-2 mb-4">
+                <div  class="flex float-right mt-2 mb-4">
                   <button
                   :disabled="can == false"
                     class="
@@ -79,9 +80,9 @@
                     Save
                   </button>
                 </div>
-
+              </div>
                 <div>
-                  <table class="text-left w-full border-collapse mt-2">
+                  <table class="border-collapse mt-2">
                     <transition-group name="list" tag="p">
                       <tbody v-for="doc in docs" :key="doc.id">
                         <tr class="hover:bg-grey-lighter">
@@ -129,7 +130,7 @@
                               >
                             </div>
                           </td>
-                          <td>
+                          <td v-if="can == true">
                             <div class="border rounded-md shadow-md p-2 mr-2">
                               <button
                                 @click.prevent="destroy(doc)"

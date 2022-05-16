@@ -17,6 +17,9 @@ class CreateTrainingsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->string('training_name');
+            $table->string('training_company');
+            $table->string('trainer');
+            $table->string('cert_status');
             $table->string('date_completed');
             $table->string('file')->nullable();
             $table->timestamps();

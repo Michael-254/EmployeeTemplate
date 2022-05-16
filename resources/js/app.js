@@ -17,6 +17,10 @@ import htmlToPdf from './htmlToPdf.js'
 
 Vue.use(htmlToPdf)
 
+import VModal from 'vue-js-modal'
+
+Vue.use(VModal, { dynamicDefault: { draggable: true, resizable: true, height: 'auto' } })
+
 
 const app = new Vue({
     router,

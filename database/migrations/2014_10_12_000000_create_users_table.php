@@ -19,6 +19,8 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('department');
             $table->string('site');
+            $table->string('employee_status')->default('active');
+            $table->string('date_inactive')->nullable();
             $table->boolean('admin')->default(0);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

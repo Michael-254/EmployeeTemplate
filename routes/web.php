@@ -29,14 +29,16 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/updateC/{id}', [App\Http\Controllers\EmployeeTemplateController::class, 'updateC'])->name('updateC');
     Route::post('/upload', [App\Http\Controllers\EmployeeTemplateController::class, 'upload'])->name('upload');
     //file
-    Route::get('/View/{id}', [App\Http\Controllers\EmployeeTemplateController::class, 'file'])->name('report.file');
-    Route::get('AdminView/View/{id}', [App\Http\Controllers\EmployeeTemplateController::class, 'file'])->name('report.file2');
+    Route::get('/View/{id}', [App\Http\Controllers\EmployeeTemplateController::class, 'file']);
+    Route::get('/TrainingDoc/{id}', [App\Http\Controllers\EmployeeTemplateController::class, 'TrainingFile']);
+    Route::get('AdminView/View/{id}', [App\Http\Controllers\EmployeeTemplateController::class, 'file']);
 
     Route::middleware(['Administrator'])->group(function () {
         Route::get('/Admin', [App\Http\Controllers\AdminController::class, 'index'])->name('Admin');
         Route::get('/Create-user', [App\Http\Controllers\AdminController::class, 'create'])->name('create.user');
         Route::post('/Create-user', [App\Http\Controllers\AdminController::class, 'storeUser'])->name('store.user');
         Route::get('/Employee-details/{id}', [App\Http\Controllers\AdminController::class, 'UserDetails'])->name('user.detail');
+        Route::patch('/Update-status/{id}', [App\Http\Controllers\AdminController::class, 'UserStatus']);
         Route::post('/Personal-details/{id}', [App\Http\Controllers\AdminController::class, 'personalDetails']);
         Route::post('/Job-details/{id}', [App\Http\Controllers\AdminController::class, 'JobDetails']);
         Route::post('/Emergency-contact/{id}', [App\Http\Controllers\AdminController::class, 'EmergencyContact']);
@@ -46,10 +48,11 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/remove-asset/{id}', [App\Http\Controllers\AdminController::class, 'destroyAsset']);
         Route::post('/training-record/{id}', [App\Http\Controllers\AdminController::class, 'TrainingRecord']);
         Route::delete('/remove-training/{id}', [App\Http\Controllers\AdminController::class, 'destroyTraining']);
+        Route::get('/user-PDF/{id}', [App\Http\Controllers\AdminController::class, 'GeneratePDF']);
 
 
 
-        Route::get('/SelectedDept', [App\Http\Controllers\EmployeeTemplateController::class, 'SelectedDept'])->name('select.dept');
+        Route::get('/Selected-User', [App\Http\Controllers\EmployeeTemplateController::class, 'SelectedDept'])->name('select.dept');
         Route::get('/EmployeeView/{id}', [App\Http\Controllers\EmployeeTemplateController::class, 'Adminview'])->name('Admin.view');
         Route::get('/selectAll', [App\Http\Controllers\EmployeeTemplateController::class, 'selectall'])->name('select.all');
         Route::get('/Export/{employees}', [App\Http\Controllers\EmployeeTemplateController::class, 'export'])->name('employees.export');

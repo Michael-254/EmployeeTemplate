@@ -435,7 +435,6 @@
                     >
                     <select
                       v-model="form.status"
-                      :disabled="can == false"
                       @change="getStatus"
                       type="text"
                       class="
@@ -524,7 +523,7 @@
                   </div>
                 </transition>
 
-                <div class="flex float-right mt-2">
+                <div v-if="can == true" class="flex float-right mt-2">
                   <button
                     :disabled="can == false"
                     class="

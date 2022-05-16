@@ -1,5 +1,21 @@
 <template>
   <div class="min-h-screen font-serif">
+        <modal name="user-status" :resizable="true" :height="350" class="w-full bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+              <div class="flex flex-col items-center pb-10">
+                  <h3 class="inline-flex text-blue-500 text-xl font-bold mt-2">Set Employee Status</h3>
+                  <img class="m-3 w-24 h-24 rounded-full shadow-sm" src="/storage/images/emp.png" alt="employee image"/>
+                  <h5 class="mb-1 text-xl font-medium text-green-600 ">{{ SelectedName }}</h5>
+                  <span class="text-sm text-gray-500">{{ SelectedDepartment }}</span>
+                  <div class="flex mt-4 space-x-3 lg:mt-6">
+                      <div>
+                        <p class="inline-flex text-blue-500 text-sm">Date:</p>
+                        <input type="date" v-model="form.date_inactive" class="inline-flex items-center py-2 px-4 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 "/>
+                      </div>                     
+                      <button @click="setStatus()" class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-green-500 rounded-lg border border-gray-300 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-gray-200 ">{{ form.button }}</button>
+                  </div>
+                  <span v-if="errors.date_inactive" class="text-sm text-red-600 mt-2" >{{ errors.date_inactive[0] }}</span>
+              </div>
+        </modal>
     <bridge-notify />
     <section class="max-w-5xl mx-auto">
       <div class="border rounded-md shadow-md mt-4 bg-white px-3">
@@ -35,20 +51,12 @@
             <option value="Miti Magazine">Miti Magazine</option>
             <option value="Communications">Communications</option>
           </select>
-          <select
-            v-model="filterId"
+          <input
+            v-model="search"
             type="text"
+            placeholder="Search..."
             class="w-full py-2 px-2 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600"
           >
-            <option value="">-- Filter By Name after selecting Dept --</option>
-            <option
-              v-for="filter in filters"
-              :key="filter.id"
-              :value="filter.id"
-            >
-              {{ filter.name }}
-            </option>
-          </select>
           <button
             @click.prevent="reset"
             class="items-center space-x-2 px-3 py-2 border border-green-400 rounded-md bg-red-500 text-white text-xs leading-4 font-medium uppercase tracking-wider focus:outline-none hover:bg-red-900"
@@ -119,6 +127,11 @@
                   >
                     Site
                   </th>
+                   <th
+                    class="py-4 px-6 border-b text-xl text-green-500 font-bold"
+                  >
+                    Status
+                  </th>
                   <th
                     class="py-4 px-6 border-b text-xl text-green-500 font-bold"
                   >
@@ -151,6 +164,9 @@
                   </td>
                   <td class="py-4 px-6 border-b border-green-light">
                     {{ user.site }}
+                  </td>
+                   <td class="py-4 px-6 border-b border-green-light">
+                     <p @click="openModal(user)" class="cursor-pointer text-blue-500 hover:text-blue-700">{{ user.employee_status }}</p>
                   </td>
                   <td class="py-4 px-6 border-b border-green-light">
                     <span class="font-bold cursor-pointer text-green-600">
@@ -187,17 +203,25 @@ export default {
     return {
       data: {},
       filters: {},
-      filterId: "",
+      search: "",
       dept: "",
       site: "",
       checked: [],
       url: "",
       user: window.user,
       Success: false,
+      SelectedID:"",
+      SelectedName: "",
+      SelectedDepartment: "",
+      form:{
+        button: "",
+        date_inactive: "",
+      },
+      errors:{}
     };
   },
   watch: {
-    filterId(value) {
+    search(value) {
       this.getResults();
     },
     site(value) {
@@ -221,8 +245,8 @@ export default {
         .get(
           "/Admin?page=" +
             page +
-            "&filterId=" +
-            this.filterId +
+            "&search=" +
+            this.search +
             "&dept=" +
             this.dept +
             "&site=" +
@@ -243,10 +267,33 @@ export default {
       this.checked = [];
     },
     reset() {
-      this.filterId = "";
+      this.search = "";
       this.dept = "";
       this.site = "";
     },
+    openModal(user){
+       this.$modal.show('user-status');
+       this.SelectedName = user.name;
+       this.SelectedDepartment = user.department;
+       this.SelectedID = user.id;
+       if(user.employee_status == 'active'){
+         this.form.button = "Deactivate";
+       }else{
+         this.form.button = "Activate";
+       }
+    },
+   setStatus(){
+     axios.patch('Update-status/' + this.SelectedID, this.form)
+        .then((response) => {
+          this.form.date_inactive = "",
+          this.$modal.hide('user-status');
+          this.$notify({ message: "Updated Successfully" });
+          this.getResults();
+        })
+        .catch((e) => {
+          this.errors = e.response.data.errors;
+        });
+   }
   },
 };
 </script>

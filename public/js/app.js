@@ -4245,6 +4245,33 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -4259,6 +4286,7 @@ __webpack_require__.r(__webpack_exports__);
       trainingName: "",
       trainer: "",
       trainingCompany: "",
+      type: "",
       Certstatus: "",
       date: "",
       IsIssued: false,
@@ -4278,6 +4306,7 @@ __webpack_require__.r(__webpack_exports__);
       form.append("date", this.date);
       form.append("trainingName", this.trainingName);
       form.append("trainer", this.trainer);
+      form.append("type", this.type);
       form.append("trainingCompany", this.trainingCompany);
       form.append("Certstatus", this.Certstatus);
       axios.post("/training-record/".concat(this.employee_id), form).then(function (response) {
@@ -83154,6 +83183,97 @@ var render = function () {
                                     "div",
                                     { staticClass: "mt-2 flex space-x-2" },
                                     [
+                                      _c("div", { staticClass: "flex-1" }, [
+                                        _c(
+                                          "label",
+                                          {
+                                            staticClass:
+                                              "text-blue-500 font-semibold",
+                                          },
+                                          [_vm._v("Training type")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "select",
+                                          {
+                                            directives: [
+                                              {
+                                                name: "model",
+                                                rawName: "v-model",
+                                                value: _vm.type,
+                                                expression: "type",
+                                              },
+                                            ],
+                                            staticClass:
+                                              "\n                      w-full\n                      py-1\n                      rounded-lg\n                      shadow-sm\n                      focus:outline-none focus:shadow-outline\n                      bg-gray-200\n                      text-gray-600\n                    ",
+                                            attrs: {
+                                              disabled: _vm.can == false,
+                                              type: "text",
+                                            },
+                                            on: {
+                                              change: [
+                                                function ($event) {
+                                                  var $$selectedVal =
+                                                    Array.prototype.filter
+                                                      .call(
+                                                        $event.target.options,
+                                                        function (o) {
+                                                          return o.selected
+                                                        }
+                                                      )
+                                                      .map(function (o) {
+                                                        var val =
+                                                          "_value" in o
+                                                            ? o._value
+                                                            : o.value
+                                                        return val
+                                                      })
+                                                  _vm.type = $event.target
+                                                    .multiple
+                                                    ? $$selectedVal
+                                                    : $$selectedVal[0]
+                                                },
+                                                _vm.getStatus,
+                                              ],
+                                            },
+                                          },
+                                          [
+                                            _c(
+                                              "option",
+                                              { attrs: { value: "" } },
+                                              [_vm._v("-- Select Type --")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "option",
+                                              { attrs: { value: "internal" } },
+                                              [_vm._v("Internal")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "option",
+                                              { attrs: { value: "external" } },
+                                              [_vm._v("External")]
+                                            ),
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _vm.errors.type
+                                          ? _c(
+                                              "p",
+                                              {
+                                                staticClass:
+                                                  "text-sm text-red-600",
+                                              },
+                                              [
+                                                _vm._v(
+                                                  _vm._s(_vm.errors.type[0])
+                                                ),
+                                              ]
+                                            )
+                                          : _vm._e(),
+                                      ]),
+                                      _vm._v(" "),
                                       _c(
                                         "div",
                                         { staticClass: "flex-1" },

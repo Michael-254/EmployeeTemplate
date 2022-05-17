@@ -20,6 +20,7 @@ class AdminController extends Controller
         $data = User::when(request('search', '') != '', function ($query) {
             $query->where('name', 'like', '%' . request('search') . '%')
                 ->orWhere('email', 'like', '%' . request('search') . '%')
+                ->orWhere('employee_status', request('search'))
                 ->orWhere('department', 'like', '%' . request('search') . '%')
                 ->orWhere('site', 'like', '%' . request('search') . '%');
         })
@@ -74,6 +75,7 @@ class AdminController extends Controller
             'nationalId.required' => 'ID No, is required'
         ]);
         $personaldetails = EmployeeTemplate::where('user_id', $id)->first();
+        User::findOrFail($id)->update(['name' => $request->Fname]);
         if ($personaldetails) {
             $personaldetails->update($request->all());
         } else {
@@ -179,6 +181,7 @@ class AdminController extends Controller
     {
         $request->validate([
             'trainingName' => 'required',
+            'type' => 'required',
             'trainingCompany' => 'required',
             'trainer' => 'required',
             'Certstatus' => 'required',
@@ -189,6 +192,7 @@ class AdminController extends Controller
         $upload = Training::Create([
             'user_id' => $id,
             'training_name' => $request->trainingName,
+            'type' => $request->type,
             'training_company' => $request->trainingCompany,
             'trainer' => $request->trainer,
             'cert_status' => $request->Certstatus,

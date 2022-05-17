@@ -17,6 +17,7 @@ class CreateTrainingsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->string('training_name');
+            $table->string('type');
             $table->string('training_company');
             $table->string('trainer');
             $table->string('cert_status');

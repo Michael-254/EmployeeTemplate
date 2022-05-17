@@ -88,6 +88,33 @@
                 </div>
 
              <div class="mt-2 flex space-x-2">
+               <div class="flex-1">
+                    <label class="text-blue-500 font-semibold"
+                      >Training type</label
+                    >
+                    <select
+                      v-model="type"
+                      :disabled="can == false"
+                      @change="getStatus"
+                      type="text"
+                      class="
+                        w-full
+                        py-1
+                        rounded-lg
+                        shadow-sm
+                        focus:outline-none focus:shadow-outline
+                        bg-gray-200
+                        text-gray-600
+                      "
+                    >
+                      <option value="">-- Select Type --</option>
+                      <option value="internal">Internal</option>
+                      <option value="external">External</option>
+                    </select>
+                    <p class="text-sm text-red-600" v-if="errors.type">{{
+                      errors.type[0]
+                    }}</p>                    
+                  </div>
                   <div class="flex-1">
                     <label class="text-blue-500 font-semibold mt-2"
                       >Date completed</label
@@ -239,6 +266,7 @@ export default {
       trainingName: "",
       trainer: "",
       trainingCompany: "",
+      type: "",
       Certstatus: "",
       date: "",
       IsIssued: false,
@@ -257,6 +285,7 @@ export default {
       form.append("date", this.date);
       form.append("trainingName", this.trainingName);
       form.append("trainer", this.trainer);
+      form.append("type", this.type);
       form.append("trainingCompany", this.trainingCompany);
       form.append("Certstatus", this.Certstatus);
 
